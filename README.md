@@ -1,0 +1,69 @@
+# know-thyself-search
+
+Retrieval over a typed, provenance-tagged personal knowledge graph — built with an AI agent as the primary reader.
+
+Companion to **[know-thyself](https://github.com/parrik/know-thyself)** (the schema) and the essay **[*Know Thyself: Search Was Never About Humans*](https://parrik.com/essays/know-thyself-search/)** (the argument).
+
+The know-thyself scaffold gives you a typed YAML graph of yourself: references, observations, overlaps, novels, emergents, equivalencies, opens — each carrying provenance. This scaffold gives you retrieval on top of it, of the shape an AI agent actually needs.
+
+---
+
+## What this is
+
+Three CLIs, ~300 LOC of stdlib + numpy, runnable today against [Alex's example graph](examples/example-graph-extended.yaml) (87 fictional nodes) or your own:
+
+```bash
+pip install pyyaml numpy
+
+python embed.py examples/example-graph-extended.yaml
+python search.py "when did Mira's grades start improving"
+python compare.py "when have I felt isolated"
+```
+
+`embed.py` reads the YAML, vectorizes each node's `statement`, and writes `graph-embeddings.json`. `search.py` accepts a query and returns top-k matches. `compare.py` shows the same query under three retrieval modes side-by-side.
+
+## What it teaches
+
+The interesting layer is what each retrieval mode earns you over the previous one:
+
+| Mode | What changes | What it earns |
+|---|---|---|
+| **A.** Pure cosine | Bag-of-vectors, no schema awareness | The IR baseline. Type-blind. A tentative novel that shares vocabulary with the query can outrank a multi-grounded overlap. |
+| **B.** + type filter | `--type observation` returns only dated episodes | The schema's typed nodes pay off. *"When did X happen"* becomes a structured query against episode nodes, not a fuzzy text match. |
+| **C.** + provenance rerank | Cosine × tier(type) × tentative-penalty | "Attribution ≠ confidence" becomes a property of retrieval, not just a rule of interpretation. A two-grounded overlap outranks a one-derivation novel even if the novel scores higher on similarity. |
+
+Run `compare.py` on any query to see what changes. The point is not that one mode is best — it's that what you put in the *node* (Pat-shaped: type + provenance) is the difference between vector retrieval and graph retrieval. Same substrate, different shape.
+
+## Two backends
+
+```bash
+python embed.py graph.yaml --backend tfidf      # default, no deps
+python embed.py graph.yaml --backend openai     # requires OPENAI_API_KEY
+```
+
+**TF-IDF** is the Sprinklr-2013 baseline — log-scaled term frequency × inverse document frequency, dropped to a sparse vector, brute-force cosine over a numpy matrix. At 87 nodes it returns in single-digit milliseconds. At 10,000 nodes it still does. *This is part of the lesson:* HNSW is what you reach for when brute-force linear scan stops being free, which for personal-knowledge-graph scale is well past where most people will ever go.
+
+**OpenAI `text-embedding-3-small`** (1536-dim) is the modern dense-retrieval substrate. Same JSON output shape, same `search.py`. Swap-in is one flag. The shape doesn't change.
+
+## Why this exists
+
+A typed personal knowledge graph (Pat McCarthy's [open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph) schema, adapted in [know-thyself](https://github.com/parrik/know-thyself)) sits unread on disk unless something can retrieve from it. Today the standard move is "paste the whole `graph.yaml` into the conversation" — works at 200 nodes, breaks at 2,000. Pat's Paper 1 makes the technical claim explicit: *"the efficient path is not to grow the context window but to grow the encoded knowledge accessible via stored adjacency: filling the graph, not the context window."*
+
+The agent's reader is finite. The graph isn't. Retrieval is the bridge.
+
+## What's missing (roadmap)
+
+- **Edge-aware retrieval.** Right now we score nodes by `statement` similarity. We don't yet walk `grounds` / `precipitates_from` / `derives_from` edges to expand a hit into its provenance neighborhood. Next.
+- **Graph traversal at scale.** Above ~10K nodes brute-force matrix multiply gets uncomfortable. `hnswlib` integration is ~30 LOC; left out for now because at personal-graph scale you don't need it. The point is the *moment* you'd need it — that's a separable chapter.
+- **Conversation-context-aware retrieval.** Re-rank by recency, by current-conversation focus, by what's been touched in recent graph commits. The Park et al. (2023) recency × importance × relevance triple, applied to a typed graph.
+- **An MCP server.** Wrap `search.py` as an [MCP](https://modelcontextprotocol.io) tool so any MCP-aware client (Claude Desktop, Cursor, etc.) can query a personal graph natively.
+
+## Credit
+
+- Schema and provenance discipline: **Patrick D. McCarthy**, [open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph).
+- Personal-graph adaptation: [know-thyself](https://github.com/parrik/know-thyself).
+- Adjacent prior work cited in the companion essay: Mem0, Graphiti / Zep, Letta, HippoRAG, A-Mem, Park et al. (2023), Karpathy's LLM Wiki, Anthropic MCP, Will Bryk's Exa "search-for-AI" framing, Lù et al. (2025) "Build the Web for Agents."
+
+## License
+
+MIT. See `LICENSE`.
