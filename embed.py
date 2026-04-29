@@ -9,7 +9,7 @@ node metadata needed for ranking (type, name, tentative flag).
 
 Two backends, picked by --backend:
   tfidf  — hand-rolled TF-IDF over a bag of word-tokens. No deps beyond
-           PyYAML + numpy. The "Sprinklr 2013 baseline" — exactly the shape
+           PyYAML + numpy. The classical inverted-index baseline — exactly the shape
            you can build on top of Lucene's inverted index. Good enough for
            a few thousand nodes.
   openai — text-embedding-3-small (1536-dim) via the OpenAI API. Needs
@@ -63,8 +63,8 @@ _RELATED_TO_BLOCK_RE = re.compile(
     r"(?ms)^  related_to:[ \t]*\n((?:[ \t]*-[ \t].*\n)+)"
 )
 # Match a leading node-id token at the start of a list item. Pat-shaped
-# IDs are TYPE-PREFIX + DIGITS + optional kebab slug ("O28-cold-turkey-on-weed",
-# "P21-claude-as-teacher", "R102", "EQ01-foo"). NOW is the singleton
+# IDs are TYPE-PREFIX + DIGITS + optional kebab slug ("O04-daughter-grades-recovered",
+# "P01-routine-as-regulation", "R102", "EQ01-foo"). NOW is the singleton
 # top-of-stack node and matches as a literal. Anything that doesn't
 # look like a node id (free-text source citations, URLs, file paths) is
 # silently skipped — those are provenance evidence, not graph edges.

@@ -247,7 +247,7 @@ def walk_provenance(
 
     Args:
       node_id: Full or unambiguous short node id (same lookup as
-        get_node — "O28" matches "O28-cold-turkey-on-weed").
+        get_node — "O04" matches "O04-daughter-grades-recovered").
       depth: Hops to walk. 1 = immediate neighbors only (default).
         2+ = recursive walk; capped by max_neighbors. Most callers
         want depth=1; depth=2 is for "show me the provenance
