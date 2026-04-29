@@ -34,16 +34,19 @@ The interesting layer is what each retrieval mode earns you over the previous on
 
 Run `compare.py` on any query to see what changes. The point is not that one mode is best — it's that what you put in the *node* (Pat-shaped: type + provenance) is the difference between vector retrieval and graph retrieval. Same substrate, different shape.
 
-## Two backends
+## Three backends
 
 ```bash
 python embed.py graph.yaml --backend tfidf      # default, no deps
-python embed.py graph.yaml --backend openai     # requires OPENAI_API_KEY
+python embed.py graph.yaml --backend local      # offline dense, requires sentence-transformers
+python embed.py graph.yaml --backend openai     # cloud dense, requires OPENAI_API_KEY
 ```
 
-**TF-IDF** is the Sprinklr-2013 baseline — log-scaled term frequency × inverse document frequency, dropped to a sparse vector, brute-force cosine over a numpy matrix. At 87 nodes it returns in single-digit milliseconds. At 10,000 nodes it still does. *This is part of the lesson:* HNSW is what you reach for when brute-force linear scan stops being free, which for personal-knowledge-graph scale is well past where most people will ever go.
+**TF-IDF** is the classical inverted-index baseline — log-scaled term frequency × inverse document frequency, dropped to a sparse vector, brute-force cosine over a numpy matrix. At 87 nodes it returns in single-digit milliseconds. At 10,000 nodes it still does. *This is part of the lesson:* HNSW is what you reach for when brute-force linear scan stops being free, which for personal-knowledge-graph scale is well past where most people will ever go.
 
-**OpenAI `text-embedding-3-small`** (1536-dim) is the modern dense-retrieval substrate. Same JSON output shape, same `search.py`. Swap-in is one flag. The shape doesn't change.
+**Local sentence-transformers** (`all-MiniLM-L6-v2`, 384-dim) is offline dense retrieval. First run downloads ~80MB to `~/.cache/huggingface/`; thereafter no network, no API key. Same JSON output shape as the other backends. Use this when you want dense semantics without sending statements to a third party — relevant when the graph is personal.
+
+**OpenAI `text-embedding-3-small`** (1536-dim) is the cloud dense-retrieval substrate. Same JSON output shape, same `search.py`. Swap-in is one flag. The shape doesn't change.
 
 ## Why this exists
 
@@ -87,7 +90,7 @@ The index is a snapshot. After editing `graph.yaml`, re-run `python embed.py pat
 
 ## What's missing (roadmap)
 
-- **Sub-statement chunking.** Each node currently maps to a single vector regardless of statement length. For long observation nodes that accumulate many dated sub-entries (e.g. a running sobriety log), the whole-statement vector gets averaged across all of them — a query targeting the most-recent sub-entry can fail to surface the parent node because the relevant content is diluted. Paragraph-grain or section-grain chunking with max-pool aggregation is the fix.
+- **Sub-statement chunking.** Each node currently maps to a single vector regardless of statement length. For long observation nodes that accumulate many dated sub-entries over time, the whole-statement vector gets averaged across all of them — a query targeting the most-recent sub-entry can fail to surface the parent node because the relevant content is diluted. Paragraph-grain or section-grain chunking with max-pool aggregation is the fix.
 - **Recency-aware reranking.** Stale nodes and fresh ones compete on cosine similarity alone. Park et al. (2023) recency × importance × relevance triple, applied to a typed graph. Data is already in the file (dated sub-sections + file mtime); this is one more knob in `search_graph`.
 - **Pattern-shaped structural queries.** "Find all nodes where the actor chose narrowness over leverage" isn't a semantic query — it's a typed-edge / typed-tag pattern. Embeddings don't do this. A small `find_pattern_nodes(filters)` tool against schema tags would.
 - **HNSW at scale.** Above ~10K nodes brute-force matrix multiply gets uncomfortable. `hnswlib` integration is ~30 LOC; left out because at personal-graph scale you don't need it. The point is *the moment* you'd need it — that's a separable chapter (the `etudes/hnsw-crossover/` benchmark measures it).
