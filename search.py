@@ -13,9 +13,9 @@ other; each can be turned on independently:
 The point of stacking them is to make visible what each layer earns
 you. Pure vector retrieval is type-blind: a tentative novel that
 happens to share vocabulary with a query will outrank a well-grounded
-overlap. Pat-shaped typed nodes give you the type filter for free.
-Provenance ranking turns "Attribution ≠ confidence" into a structural
-property of retrieval, not just a rule of interpretation.
+overlap. Typed nodes give you the type filter for free. Provenance
+ranking turns "Attribution ≠ confidence" into a structural property
+of retrieval, not just a rule of interpretation.
 
 Usage:
   python search.py "when have I felt isolated"
@@ -32,12 +32,13 @@ except ImportError:
     sys.exit("ERROR: pip install numpy")
 
 
-# Provenance tier multipliers. Match Pat McCarthy's confidence ordering:
-# References (verifiable facts) > Overlaps (multi-grounded patterns) >
-# Observations (single dated events) > Practices (operating rules) ≈
-# Emergents (intersection-produced) > Novels (single-derivation, often
-# tentative) > Open (unresolved questions). Tentative-flagged nodes get
-# an additional penalty.
+# Provenance tier multipliers. Confidence ordering reflects how
+# multiply-grounded the node is: References (verifiable facts) >
+# Overlaps (multi-grounded patterns) > Observations (single dated
+# events) > Practices (operating rules) ≈ Emergents (intersection-
+# produced) > Novels (single-derivation, often tentative) > Open
+# (unresolved questions). Tentative-flagged nodes get an additional
+# penalty.
 TYPE_TIER = {
     "reference":   1.10,
     "overlap":     1.08,
@@ -119,7 +120,7 @@ def main():
     ap.add_argument(
         "--provenance",
         action="store_true",
-        help="Re-rank by Pat-tier confidence (Reference > Overlap > … > Novel)",
+        help="Re-rank by tier confidence (Reference > Overlap > … > Novel)",
     )
     ap.add_argument(
         "--full",

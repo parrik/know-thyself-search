@@ -125,7 +125,7 @@ def search_graph(
     """Search the typed knowledge graph by semantic similarity.
 
     Returns top_k node hits ranked by cosine similarity over node
-    statements, optionally boosted by Pat-tier provenance reranking
+    statements, optionally boosted by tier-based provenance reranking
     (References > Overlaps > Observations > Practices ≈ Emergents >
     Novels > Opens, with a tentative-flag penalty).
 

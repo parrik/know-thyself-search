@@ -93,7 +93,7 @@ The index is a snapshot — re-run `embed.py` after editing the graph.
 
 ## Credit
 
-Provenance triples come from a long lineage: W3C [RDF](https://www.w3.org/TR/rdf11-concepts/) (2004), [PROV-O](https://www.w3.org/TR/prov-overview/) (2013), [Anthropic's citations API](https://docs.anthropic.com/en/docs/build-with-claude/citations) for the same triple inside the product surface, and [Patrick McCarthy's open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph) for the formal scientific-graph theorems this work adapts to personal memory.
+Provenance triples come from a long lineage: W3C [RDF](https://www.w3.org/TR/rdf11-concepts/) (2004), [PROV-O](https://www.w3.org/TR/prov-overview/) (2013), and [Anthropic's citations API](https://docs.anthropic.com/en/docs/build-with-claude/citations) for the same triple inside the product surface. [Patrick McCarthy's open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph) supplies formal theorems for the scientific-knowledge-graph case; the personal-graph framing — typed nodes with provenance and tentative flags, the four-scale synthesis, the temporal-validity extension — is this repo's contribution.
 
 Adjacent work cited in the [companion essay](https://parrik.com/essays/know-thyself-search/): Mem0, Graphiti / Zep, Letta, HippoRAG, A-Mem, Park et al. (2023), Karpathy's LLM Wiki, Anthropic MCP, Will Bryk's Exa "search-for-AI" framing, Lù et al. (2025) "Build the Web for Agents."
 
