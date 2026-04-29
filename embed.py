@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
-embed.py — produce a vector index for a Know-Thyself / open-knowledge-graph
-YAML file.
+embed.py — produce a vector index for a typed knowledge-graph YAML file.
 
-Reads a typed-node graph (Pat McCarthy schema), embeds each node's `statement`
-text, and writes a JSON index keyed by node id, carrying the vector + the
-node metadata needed for ranking (type, name, tentative flag).
+Reads a typed-node graph, embeds each node's `statement` text, and writes
+a JSON index keyed by node id, carrying the vector + the node metadata
+needed for ranking (type, name, tentative flag).
 
 Two backends, picked by --backend:
   tfidf  — hand-rolled TF-IDF over a bag of word-tokens. No deps beyond
@@ -62,12 +61,12 @@ _GROUNDED_BY_BLOCK_RE = re.compile(
 _RELATED_TO_BLOCK_RE = re.compile(
     r"(?ms)^  related_to:[ \t]*\n((?:[ \t]*-[ \t].*\n)+)"
 )
-# Match a leading node-id token at the start of a list item. Pat-shaped
-# IDs are TYPE-PREFIX + DIGITS + optional kebab slug ("O04-daughter-grades-recovered",
-# "P01-routine-as-regulation", "R102", "EQ01-foo"). NOW is the singleton
-# top-of-stack node and matches as a literal. Anything that doesn't
-# look like a node id (free-text source citations, URLs, file paths) is
-# silently skipped — those are provenance evidence, not graph edges.
+# Match a leading node-id token at the start of a list item. Node IDs
+# follow TYPE-PREFIX + DIGITS + optional kebab slug ("O04-some-slug",
+# "P01-some-slug", "R102", "EQ01-foo"). NOW is the singleton top-of-stack
+# node and matches as a literal. Anything that doesn't look like a node
+# id (free-text source citations, URLs, file paths) is silently skipped
+# — those are provenance evidence, not graph edges.
 _LEADING_NODE_ID_RE = re.compile(r"^([A-Z]{1,3}\d+(?:-[a-z0-9-]+)?|NOW)\b")
 
 
@@ -137,19 +136,18 @@ def _regex_node(block):
     return n
 
 
-# Map richer Pat-McCarthy edge relations onto the 2-bucket model
-# the simplified schema uses. The personal graph uses two buckets
-# (grounded_by = provenance / supporting evidence; related_to =
-# everything else); the example graph uses typed edges with relations
-# like "grounds" / "emergent_from" / "informs". We collapse the typed
-# form into the 2-bucket form for retrieval — provenance-shaped
-# relations land in grounded_by_ids; associative relations land in
-# related_to_ids.
+# Map richer typed-edge relations onto the 2-bucket model the simplified
+# schema uses. The simple shape has two buckets (grounded_by = provenance
+# / supporting evidence; related_to = everything else); richer schemas use
+# typed edges with relations like "grounds" / "emergent_from" / "informs".
+# We collapse the typed form into the 2-bucket form for retrieval —
+# provenance-shaped relations land in grounded_by_ids; associative
+# relations land in related_to_ids.
 _PROVENANCE_RELATIONS = {"grounded_by", "grounds", "derived_from"}
 
 
 def _bucket_typed_edges(edges, gb_out, rt_out):
-    """Process a list of {to, relation} edge dicts (Pat-McCarthy shape)
+    """Process a list of {to, relation} edge dicts (typed-edge shape)
     into the two id buckets, in place."""
     if not edges:
         return

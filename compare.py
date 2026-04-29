@@ -6,7 +6,7 @@ The point: make visible what each layer of typed-graph retrieval earns
 you over flat similarity.
 
   Mode A  pure cosine        (the IR baseline)
-  Mode B  + type filter      (Pat-shaped nodes know what they ARE)
+  Mode B  + type filter      (typed nodes know what they ARE)
   Mode C  + provenance rerank (Attribution ≠ Confidence, structurally)
 
 Run it on a query where the answer should be a specific dated event
