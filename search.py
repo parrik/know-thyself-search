@@ -88,6 +88,26 @@ def openai_vectorize_query(query, model):
     return v / max(np.linalg.norm(v), 1e-12)
 
 
+_LOCAL_ENCODER_CACHE = {}
+
+
+def local_vectorize_query(query, model):
+    """Encode a query with a sentence-transformers model. Caches the
+    encoder per-process so repeated calls don't reload the weights."""
+    encoder = _LOCAL_ENCODER_CACHE.get(model)
+    if encoder is None:
+        from sentence_transformers import SentenceTransformer
+        encoder = SentenceTransformer(model)
+        _LOCAL_ENCODER_CACHE[model] = encoder
+    v = encoder.encode(
+        [query],
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=False,
+    )[0].astype(np.float32)
+    return v
+
+
 def main():
     ap = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
@@ -126,6 +146,8 @@ def main():
         query_vec = tfidf_vectorize_query(args.query, vocab)
     elif backend == "openai":
         query_vec = openai_vectorize_query(args.query, index["model"])
+    elif backend == "local":
+        query_vec = local_vectorize_query(args.query, index["model"])
     else:
         sys.exit(f"unknown backend: {backend}")
 

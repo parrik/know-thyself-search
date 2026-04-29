@@ -48,17 +48,82 @@ except ImportError:
 # metadata, comments-as-nodes).
 # ──────────────────────────────────────────────────────────────────────
 
+_NODE_ID_RE = re.compile(r"(?m)^- id:\s*(\S+)")
+_NODE_TYPE_RE = re.compile(r"(?m)^  type:\s*(\S+)")
+_NODE_NAME_RE = re.compile(r"(?m)^  name:\s*(?:\"([^\"]*)\"|'([^']*)'|(.+))$")
+_NODE_TENTATIVE_RE = re.compile(r"(?m)^  tentative:\s*(true|True|yes|YES)\b")
+_NODE_SHELVED_RE = re.compile(r"(?m)^  shelved:\s*(true|True|yes|YES)\b")
+_STATEMENT_BLOCK_RE = re.compile(
+    r"(?ms)^  statement:\s*\|.*?\n((?:    .*\n|\s*\n)+)"
+)
+
+
+def _regex_node(block):
+    """Extract a node dict from a per-node text block by regex.
+
+    Used as a fallback when yaml.safe_load can't parse the block (e.g.
+    list items with unquoted colons, or other hand-curation quirks).
+    Captures only the fields embed/search/MCP need: id, type, name,
+    statement, tentative, shelved. Edges are not extracted — this is
+    a search index, not a full deserializer.
+    """
+    m_id = _NODE_ID_RE.search(block)
+    if not m_id:
+        return None
+    n = {"id": m_id.group(1)}
+    if m := _NODE_TYPE_RE.search(block):
+        n["type"] = m.group(1).strip().strip('"\'')
+    if m := _NODE_NAME_RE.search(block):
+        n["name"] = (m.group(1) or m.group(2) or m.group(3) or "").strip()
+    if _NODE_TENTATIVE_RE.search(block):
+        n["tentative"] = True
+    if _NODE_SHELVED_RE.search(block):
+        n["shelved"] = True
+    if m := _STATEMENT_BLOCK_RE.search(block):
+        # Strip the 4-space indent off each non-empty line.
+        raw = m.group(1)
+        lines = [(ln[4:] if ln.startswith("    ") else ln) for ln in raw.splitlines()]
+        n["statement"] = "\n".join(lines).rstrip()
+    return n
+
+
 def load_nodes(path):
-    with open(path) as f:
-        data = yaml.safe_load(f)
-    if not isinstance(data, list):
-        # Some graphs put metadata as a leading mapping; fall back to
-        # extracting any list-shaped value.
-        for v in data.values() if isinstance(data, dict) else []:
-            if isinstance(v, list):
-                data = v
-                break
-    nodes = [n for n in data if isinstance(n, dict) and n.get("id")]
+    text = Path(path).read_text()
+
+    # Fast path: file is valid YAML (the example-graph shape — pure list
+    # of node dicts, or a mapping with a list-shaped value).
+    try:
+        data = yaml.safe_load(text)
+        if not isinstance(data, list):
+            for v in data.values() if isinstance(data, dict) else []:
+                if isinstance(v, list):
+                    data = v
+                    break
+        if isinstance(data, list):
+            return [n for n in data if isinstance(n, dict) and n.get("id")]
+    except yaml.YAMLError:
+        pass
+
+    # Fallback: file mixes leading mapping keys (e.g. version:, owner:)
+    # with the node list at the same level, or has hand-curation quirks
+    # that break strict YAML parsing. Split into per-node blocks at
+    # lines beginning with "- id:" and parse each block; if a block
+    # won't parse, regex-extract the fields we need.
+    blocks = re.split(r"(?m)^(?=- id:)", text)
+    nodes = []
+    for block in blocks:
+        if not block.lstrip().startswith("- id:"):
+            continue
+        try:
+            parsed = yaml.safe_load(block)
+            if isinstance(parsed, list):
+                nodes.extend(n for n in parsed if isinstance(n, dict) and n.get("id"))
+                continue
+        except yaml.YAMLError:
+            pass
+        n = _regex_node(block)
+        if n is not None:
+            nodes.append(n)
     return nodes
 
 
@@ -145,6 +210,34 @@ def openai_embed(nodes, model="text-embedding-3-small"):
 
 
 # ──────────────────────────────────────────────────────────────────────
+# Local sentence-transformers backend (dense, free, offline)
+#
+# Same dense-retrieval shape as the OpenAI backend — every node becomes
+# a fixed-dim vector encoding learned semantic features, so cosine
+# captures synonymy that TF-IDF can't (mentor ≈ teacher, sober ≈ clean).
+# Model runs on CPU; first call downloads weights (~80MB for MiniLM,
+# cached at ~/.cache/huggingface/). No API key, no network after that.
+# ──────────────────────────────────────────────────────────────────────
+
+def local_embed(nodes, model="sentence-transformers/all-MiniLM-L6-v2"):
+    try:
+        from sentence_transformers import SentenceTransformer
+    except ImportError:
+        sys.exit("ERROR: pip install sentence-transformers")
+    print(f"  loading {model} (first run downloads ~80MB to ~/.cache/huggingface/)...", file=sys.stderr)
+    encoder = SentenceTransformer(model)
+    texts = [(n.get("statement") or "") + "\n\n" + (n.get("name") or "") for n in nodes]
+    print(f"  encoding {len(texts)} statements...", file=sys.stderr)
+    vectors = encoder.encode(
+        texts,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=False,
+    ).astype(np.float32)
+    return None, vectors  # no vocab — vectors are dense
+
+
+# ──────────────────────────────────────────────────────────────────────
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -152,14 +245,21 @@ def main():
     ap.add_argument("-o", "--output", default="graph-embeddings.json")
     ap.add_argument(
         "-b", "--backend",
-        choices=["tfidf", "openai"],
+        choices=["tfidf", "openai", "local"],
         default="tfidf",
-        help="Embedding backend (default: tfidf — no API needed)",
+        help="Embedding backend (default: tfidf — no API needed). "
+             "'local' uses sentence-transformers offline; "
+             "'openai' calls the embeddings API.",
     )
     ap.add_argument(
         "--openai-model",
         default="text-embedding-3-small",
         help="OpenAI embedding model name (used with --backend openai)",
+    )
+    ap.add_argument(
+        "--local-model",
+        default="sentence-transformers/all-MiniLM-L6-v2",
+        help="sentence-transformers model name (used with --backend local)",
     )
     args = ap.parse_args()
 
@@ -171,14 +271,25 @@ def main():
         print(f"backend: tf-idf (hand-rolled, no deps)", file=sys.stderr)
         vocab, vectors = tfidf_embed(nodes)
         print(f"  vocab: {len(vocab)} terms · vectors: {vectors.shape}", file=sys.stderr)
-    else:
+    elif args.backend == "openai":
         print(f"backend: openai ({args.openai_model})", file=sys.stderr)
         vocab, vectors = openai_embed(nodes, model=args.openai_model)
         print(f"  vectors: {vectors.shape}", file=sys.stderr)
+    else:  # local
+        print(f"backend: local sentence-transformers ({args.local_model})", file=sys.stderr)
+        vocab, vectors = local_embed(nodes, model=args.local_model)
+        print(f"  vectors: {vectors.shape}", file=sys.stderr)
+
+    if args.backend == "tfidf":
+        model_name = "tfidf"
+    elif args.backend == "openai":
+        model_name = args.openai_model
+    else:
+        model_name = args.local_model
 
     out = {
         "backend": args.backend,
-        "model": args.openai_model if args.backend == "openai" else "tfidf",
+        "model": model_name,
         "dim": int(vectors.shape[1]),
         "count": len(nodes),
         "vocab": vocab,  # only present for tfidf

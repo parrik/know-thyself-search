@@ -51,12 +51,45 @@ A typed personal knowledge graph (Pat McCarthy's [open-knowledge-graph](https://
 
 The agent's reader is finite. The graph isn't. Retrieval is the bridge.
 
+## MCP server
+
+`mcp_server.py` exposes the retrieval surface as [MCP](https://modelcontextprotocol.io) tools so any MCP-aware client (Claude Code, Claude Desktop, Cursor, etc.) can query the graph natively — instead of pasting `graph.yaml` into the conversation.
+
+```bash
+pip install 'mcp[cli]'                       # the official Python MCP SDK
+python embed.py path/to/graph.yaml           # build the index first
+python mcp_server.py                         # stdio server (the usual MCP transport)
+```
+
+Three tools:
+
+| Tool | What it does |
+|---|---|
+| `search_graph(query, top_k=5, type_filter=None, provenance=False)` | Top-k retrieval. Same shape as `search.py`. |
+| `get_node(node_id)` | Fetch a single node by full or unambiguous short id (`"O04"` matches `"O04-daughter-grades-recovered"`). |
+| `list_node_stats()` | Index summary: backend, total nodes, counts by type. Useful as a session-opener. |
+
+### Wire into Claude Code (user scope)
+
+```bash
+claude mcp add know-thyself-search -s user -- \
+  /path/to/python /path/to/know-thyself-search/mcp_server.py
+```
+
+Verify with `claude mcp list`. The server then loads in every Claude Code session; tools appear as `mcp__know-thyself-search__search_graph`, etc.
+
+The index is loaded from `graph-embeddings.json` next to `mcp_server.py` by default. Override with `KNOW_THYSELF_INDEX=/path/to/index.json`.
+
+### Re-embed when the graph changes
+
+The index is a snapshot. After editing `graph.yaml`, re-run `python embed.py path/to/graph.yaml` to refresh `graph-embeddings.json`. The MCP server picks up the new index on next launch.
+
 ## What's missing (roadmap)
 
 - **Edge-aware retrieval.** Right now we score nodes by `statement` similarity. We don't yet walk `grounds` / `precipitates_from` / `derives_from` edges to expand a hit into its provenance neighborhood. Next.
 - **Graph traversal at scale.** Above ~10K nodes brute-force matrix multiply gets uncomfortable. `hnswlib` integration is ~30 LOC; left out for now because at personal-graph scale you don't need it. The point is the *moment* you'd need it — that's a separable chapter.
 - **Conversation-context-aware retrieval.** Re-rank by recency, by current-conversation focus, by what's been touched in recent graph commits. The Park et al. (2023) recency × importance × relevance triple, applied to a typed graph.
-- **An MCP server.** Wrap `search.py` as an [MCP](https://modelcontextprotocol.io) tool so any MCP-aware client (Claude Desktop, Cursor, etc.) can query a personal graph natively.
+- **MCP edge tools.** Once edge-aware retrieval lands in the core search layer, expose it as `walk_provenance(node_id)` / `find_grounded_by(claim_id)` MCP tools.
 
 ## Credit
 

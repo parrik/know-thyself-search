@@ -3,3 +3,9 @@ numpy>=1.24
 
 # Optional, only if you use --backend openai
 # openai>=1.0
+
+# Optional, only if you use --backend local (offline dense embeddings)
+# sentence-transformers>=2.2
+
+# Optional, only if you run mcp_server.py
+# mcp[cli]>=1.0
