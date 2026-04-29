@@ -32,7 +32,7 @@ The interesting layer is what each retrieval mode earns you over the previous on
 | **B.** + type filter | `--type observation` returns only dated episodes | The schema's typed nodes pay off. *"When did X happen"* becomes a structured query against episode nodes, not a fuzzy text match. |
 | **C.** + provenance rerank | Cosine × tier(type) × tentative-penalty | "Attribution ≠ confidence" becomes a property of retrieval, not just a rule of interpretation. A two-grounded overlap outranks a one-derivation novel even if the novel scores higher on similarity. |
 
-Run `compare.py` on any query to see what changes. The point is not that one mode is best — it's that what you put in the *node* (Pat-shaped: type + provenance) is the difference between vector retrieval and graph retrieval. Same substrate, different shape.
+Run `compare.py` on any query to see what changes. The point is not that one mode is best — it's that what you put in the *node* (typed nodes with provenance, the shape RDF and PROV-O standardized decades ago) is the difference between vector retrieval and graph retrieval. Same substrate, different shape.
 
 ## Three backends
 
@@ -50,7 +50,7 @@ python embed.py graph.yaml --backend openai     # cloud dense, requires OPENAI_A
 
 ## Why this exists
 
-A typed personal knowledge graph (Pat McCarthy's [open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph) schema, adapted in [know-thyself](https://github.com/parrik/know-thyself)) sits unread on disk unless something can retrieve from it. Today the standard move is "paste the whole `graph.yaml` into the conversation" — works at 200 nodes, breaks at 2,000. Pat's Paper 1 makes the technical claim explicit: *"the efficient path is not to grow the context window but to grow the encoded knowledge accessible via stored adjacency: filling the graph, not the context window."*
+A typed personal knowledge graph (typed nodes with provenance triples — the shape from [RDF](https://www.w3.org/TR/rdf11-concepts/), [PROV-O](https://www.w3.org/TR/prov-overview/), and [Patrick McCarthy's open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph), drawn together and extended for personal memory in [know-thyself](https://github.com/parrik/know-thyself)) sits unread on disk unless something can retrieve from it. Today the standard move is "paste the whole `graph.yaml` into the conversation" — works at 200 nodes, breaks at 2,000. Pat's Paper 1 makes the technical claim explicit: *"the efficient path is not to grow the context window but to grow the encoded knowledge accessible via stored adjacency: filling the graph, not the context window."*
 
 The agent's reader is finite. The graph isn't. Retrieval is the bridge.
 
@@ -97,7 +97,7 @@ The index is a snapshot. After editing `graph.yaml`, re-run `python embed.py pat
 
 ## Credit
 
-- Schema and provenance discipline: **Patrick D. McCarthy**, [open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph).
+- Provenance-triple lineage: **W3C [RDF](https://www.w3.org/TR/rdf11-concepts/)** (2004), **[PROV-O](https://www.w3.org/TR/prov-overview/)** (2013), **[Anthropic's Claude citations API](https://docs.anthropic.com/en/docs/build-with-claude/citations)** for the same triplet inside the product surface, **[Patrick McCarthy's open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph)** for the formal necessity theorems and the personal-graph framing.
 - Personal-graph adaptation: [know-thyself](https://github.com/parrik/know-thyself).
 - Adjacent prior work cited in the companion essay: Mem0, Graphiti / Zep, Letta, HippoRAG, A-Mem, Park et al. (2023), Karpathy's LLM Wiki, Anthropic MCP, Will Bryk's Exa "search-for-AI" framing, Lù et al. (2025) "Build the Web for Agents."
 
