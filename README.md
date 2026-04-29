@@ -68,8 +68,8 @@ Tools: `search_graph`, `get_node`, `walk_provenance` (typed-edge neighborhood wa
 
 ## Credit
 
-Provenance triples come from a long lineage: W3C [RDF](https://www.w3.org/TR/rdf11-concepts/) (2004), [PROV-O](https://www.w3.org/TR/prov-overview/) (2013), and [Patrick McCarthy's open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph) for formal theorems on the **scientific** case. The **personal-graph** framing — typed nodes with provenance and tentative flags, the four-scale synthesis, the temporal-validity extension — is this work's contribution.
+The **personal-graph** adaptation — typed nodes with provenance and tentative flags, the four-scale synthesis, the temporal-validity extension — is this work's contribution. The substrate it sits on is older: W3C [RDF](https://www.w3.org/TR/rdf11-concepts/) (2004) and [PROV-O](https://www.w3.org/TR/prov-overview/) (2013) for provenance triples, and [Patrick McCarthy's open-knowledge-graph](https://github.com/patdmc/open-knowledge-graph) for formal theorems on the **scientific** case.
 
-Adjacent prior art (Mem0, Graphiti, Letta, HippoRAG, A-Mem, Park et al., MCP, Exa) is surveyed in the [companion essay](https://parrik.com/essays/know-thyself-search/).
+Adjacent contemporaries (Mem0, Graphiti, Letta, HippoRAG, A-Mem, Park et al., MCP, Exa) are surveyed in the [companion essay](https://parrik.com/essays/know-thyself-search/).
 
 MIT licensed. See `LICENSE`.
