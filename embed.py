@@ -56,6 +56,54 @@ _NODE_SHELVED_RE = re.compile(r"(?m)^  shelved:\s*(true|True|yes|YES)\b")
 _STATEMENT_BLOCK_RE = re.compile(
     r"(?ms)^  statement:\s*\|.*?\n((?:    .*\n|\s*\n)+)"
 )
+_GROUNDED_BY_BLOCK_RE = re.compile(
+    r"(?ms)^  grounded_by:[ \t]*\n((?:[ \t]*-[ \t].*\n)+)"
+)
+_RELATED_TO_BLOCK_RE = re.compile(
+    r"(?ms)^  related_to:[ \t]*\n((?:[ \t]*-[ \t].*\n)+)"
+)
+# Match a leading node-id token at the start of a list item. Pat-shaped
+# IDs are TYPE-PREFIX + DIGITS + optional kebab slug ("O28-cold-turkey-on-weed",
+# "P21-claude-as-teacher", "R102", "EQ01-foo"). NOW is the singleton
+# top-of-stack node and matches as a literal. Anything that doesn't
+# look like a node id (free-text source citations, URLs, file paths) is
+# silently skipped — those are provenance evidence, not graph edges.
+_LEADING_NODE_ID_RE = re.compile(r"^([A-Z]{1,3}\d+(?:-[a-z0-9-]+)?|NOW)\b")
+
+
+def _filter_node_id_refs(items):
+    """Pull leading node-id tokens out of a list-of-strings edge block.
+
+    Tolerates trailing parenthetical commentary ("R16-foo (parent context)"
+    -> "R16-foo") and ignores list items that don't begin with an id."""
+    if not items:
+        return []
+    ids = []
+    for item in items:
+        if not isinstance(item, str):
+            continue
+        s = item.strip().strip("`'\"")
+        m = _LEADING_NODE_ID_RE.match(s)
+        if m:
+            ids.append(m.group(1))
+    return ids
+
+
+def _extract_edge_block(block_text):
+    """Parse a captured grounded_by/related_to block (regex fallback path).
+
+    Returns a list of leading-node-ids extracted from each list item.
+    Continuation lines (wrapped list items) are ignored — we only need
+    the leading id, which sits on the line that begins with '- '."""
+    if not block_text:
+        return []
+    items = []
+    for line in block_text.splitlines():
+        # Match list item start: any leading whitespace, then "- ".
+        m = re.match(r"^\s*-\s+(.+)$", line)
+        if m:
+            items.append(m.group(1))
+    return _filter_node_id_refs(items)
 
 
 def _regex_node(block):
@@ -63,10 +111,8 @@ def _regex_node(block):
 
     Used as a fallback when yaml.safe_load can't parse the block (e.g.
     list items with unquoted colons, or other hand-curation quirks).
-    Captures only the fields embed/search/MCP need: id, type, name,
-    statement, tentative, shelved. Edges are not extracted — this is
-    a search index, not a full deserializer.
-    """
+    Captures id, type, name, statement, tentative, shelved, plus the
+    structured-edge node-id references in grounded_by / related_to."""
     m_id = _NODE_ID_RE.search(block)
     if not m_id:
         return None
@@ -84,7 +130,62 @@ def _regex_node(block):
         raw = m.group(1)
         lines = [(ln[4:] if ln.startswith("    ") else ln) for ln in raw.splitlines()]
         n["statement"] = "\n".join(lines).rstrip()
+    gb = _GROUNDED_BY_BLOCK_RE.search(block)
+    n["grounded_by_ids"] = _extract_edge_block(gb.group(1) if gb else "")
+    rt = _RELATED_TO_BLOCK_RE.search(block)
+    n["related_to_ids"] = _extract_edge_block(rt.group(1) if rt else "")
     return n
+
+
+# Map richer Pat-McCarthy edge relations onto the 2-bucket model
+# the simplified schema uses. The personal graph uses two buckets
+# (grounded_by = provenance / supporting evidence; related_to =
+# everything else); the example graph uses typed edges with relations
+# like "grounds" / "emergent_from" / "informs". We collapse the typed
+# form into the 2-bucket form for retrieval — provenance-shaped
+# relations land in grounded_by_ids; associative relations land in
+# related_to_ids.
+_PROVENANCE_RELATIONS = {"grounded_by", "grounds", "derived_from"}
+
+
+def _bucket_typed_edges(edges, gb_out, rt_out):
+    """Process a list of {to, relation} edge dicts (Pat-McCarthy shape)
+    into the two id buckets, in place."""
+    if not edges:
+        return
+    for edge in edges:
+        if not isinstance(edge, dict):
+            continue
+        tgt = edge.get("to")
+        if not isinstance(tgt, str):
+            continue
+        m = _LEADING_NODE_ID_RE.match(tgt.strip())
+        if not m:
+            continue
+        tgt_id = m.group(1)
+        relation = (edge.get("relation") or "").lower().strip()
+        if relation in _PROVENANCE_RELATIONS:
+            gb_out.append(tgt_id)
+        else:
+            rt_out.append(tgt_id)
+
+
+def _annotate_edges(node):
+    """For a yaml.safe_load-parsed node, populate grounded_by_ids /
+    related_to_ids from any supported edge shape:
+      - simple buckets: grounded_by: [id, ...], related_to: [id, ...]
+      - typed edges:    edges: [{to: id, relation: <type>}, ...]
+    Either or both may be present; the result is the union, with
+    leading-id extraction applied to each candidate. Idempotent —
+    safe to call on regex-parsed nodes too (already populated)."""
+    if "grounded_by_ids" in node and "related_to_ids" in node:
+        return node
+    gb = list(_filter_node_id_refs(node.get("grounded_by", [])))
+    rt = list(_filter_node_id_refs(node.get("related_to", [])))
+    _bucket_typed_edges(node.get("edges"), gb, rt)
+    node["grounded_by_ids"] = gb
+    node["related_to_ids"] = rt
+    return node
 
 
 def load_nodes(path):
@@ -100,7 +201,7 @@ def load_nodes(path):
                     data = v
                     break
         if isinstance(data, list):
-            return [n for n in data if isinstance(n, dict) and n.get("id")]
+            return [_annotate_edges(n) for n in data if isinstance(n, dict) and n.get("id")]
     except yaml.YAMLError:
         pass
 
@@ -117,7 +218,7 @@ def load_nodes(path):
         try:
             parsed = yaml.safe_load(block)
             if isinstance(parsed, list):
-                nodes.extend(n for n in parsed if isinstance(n, dict) and n.get("id"))
+                nodes.extend(_annotate_edges(n) for n in parsed if isinstance(n, dict) and n.get("id"))
                 continue
         except yaml.YAMLError:
             pass
@@ -300,6 +401,8 @@ def main():
                 "name": n.get("name", ""),
                 "tentative": bool(n.get("tentative")),
                 "statement": n.get("statement", ""),
+                "grounded_by_ids": n.get("grounded_by_ids", []),
+                "related_to_ids": n.get("related_to_ids", []),
                 "vector": vectors[i].tolist(),
             }
             for i, n in enumerate(nodes)

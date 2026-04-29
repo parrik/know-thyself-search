@@ -61,13 +61,14 @@ python embed.py path/to/graph.yaml           # build the index first
 python mcp_server.py                         # stdio server (the usual MCP transport)
 ```
 
-Three tools:
+Four tools:
 
 | Tool | What it does |
 |---|---|
-| `search_graph(query, top_k=5, type_filter=None, provenance=False)` | Top-k retrieval. Same shape as `search.py`. |
+| `search_graph(query, top_k=5, type_filter=None, provenance=False)` | Top-k retrieval. Each hit carries the node's `grounded_by_ids` + `related_to_ids` so the caller can follow provenance without a second query. Same shape as `search.py`. |
 | `get_node(node_id)` | Fetch a single node by full or unambiguous short id (`"O04"` matches `"O04-daughter-grades-recovered"`). |
-| `list_node_stats()` | Index summary: backend, total nodes, counts by type. Useful as a session-opener. |
+| `walk_provenance(node_id, depth=1, include_incoming=True)` | Walk the typed-edge neighborhood of a node — `grounded_by` + `related_to` outbound, plus the inverse-edge nodes that point at it. Returns lightweight neighbor entries (id/type/name only); call `get_node` for full text. Unresolved references (typo'd or shelved targets) are reported separately rather than dropped silently. |
+| `list_node_stats()` | Index summary: backend, total nodes, counts by type, total edges by relation. Useful as a session-opener. |
 
 ### Wire into Claude Code (user scope)
 
@@ -86,10 +87,10 @@ The index is a snapshot. After editing `graph.yaml`, re-run `python embed.py pat
 
 ## What's missing (roadmap)
 
-- **Edge-aware retrieval.** Right now we score nodes by `statement` similarity. We don't yet walk `grounds` / `precipitates_from` / `derives_from` edges to expand a hit into its provenance neighborhood. Next.
-- **Graph traversal at scale.** Above ~10K nodes brute-force matrix multiply gets uncomfortable. `hnswlib` integration is ~30 LOC; left out for now because at personal-graph scale you don't need it. The point is the *moment* you'd need it — that's a separable chapter.
-- **Conversation-context-aware retrieval.** Re-rank by recency, by current-conversation focus, by what's been touched in recent graph commits. The Park et al. (2023) recency × importance × relevance triple, applied to a typed graph.
-- **MCP edge tools.** Once edge-aware retrieval lands in the core search layer, expose it as `walk_provenance(node_id)` / `find_grounded_by(claim_id)` MCP tools.
+- **Sub-statement chunking.** Each node currently maps to a single vector regardless of statement length. For long observation nodes that accumulate many dated sub-entries (e.g. a running sobriety log), the whole-statement vector gets averaged across all of them — a query targeting the most-recent sub-entry can fail to surface the parent node because the relevant content is diluted. Paragraph-grain or section-grain chunking with max-pool aggregation is the fix.
+- **Recency-aware reranking.** Stale nodes and fresh ones compete on cosine similarity alone. Park et al. (2023) recency × importance × relevance triple, applied to a typed graph. Data is already in the file (dated sub-sections + file mtime); this is one more knob in `search_graph`.
+- **Pattern-shaped structural queries.** "Find all nodes where the actor chose narrowness over leverage" isn't a semantic query — it's a typed-edge / typed-tag pattern. Embeddings don't do this. A small `find_pattern_nodes(filters)` tool against schema tags would.
+- **HNSW at scale.** Above ~10K nodes brute-force matrix multiply gets uncomfortable. `hnswlib` integration is ~30 LOC; left out because at personal-graph scale you don't need it. The point is *the moment* you'd need it — that's a separable chapter (the `etudes/hnsw-crossover/` benchmark measures it).
 
 ## Credit
 
