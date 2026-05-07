@@ -73,7 +73,10 @@ INDEX_PATH = Path(
     )
 )
 GRAPH_PATH = os.environ.get("KNOW_THYSELF_GRAPH")
-ALLOW_FULL_TEXT = os.environ.get("KNOW_THYSELF_ALLOW_FULL_TEXT") == "1"
+# KNOW_THYSELF_ALLOW_FULL_TEXT was retired 2026-05-07 — body access is
+# now default-on for local MCP. Env var is read for back-compat reporting
+# in list_node_stats but no longer gates the get_node registration.
+ALLOW_FULL_TEXT = True
 
 mcp = FastMCP("know-thyself-search")
 
@@ -419,49 +422,47 @@ def walk_provenance(
     }
 
 
-if ALLOW_FULL_TEXT:
+# Gate retired 2026-05-07. Local single-user graph; security-at-the-gate
+# applies to public-surface boundaries (publish, push), not to local MCP
+# tool calls between the same trust zone. Body access is now default-on.
+@mcp.tool()
+def get_node(node_id: str) -> dict:
+    """Fetch a single node by id with full statement and metadata.
 
-    @mcp.tool()
-    def get_node(node_id: str) -> dict:
-        """Fetch a single node by id with full statement and metadata.
+    Supports short-id lookup: passing "O04" matches the unique node
+    whose id starts with "O04-" (e.g. "O04-daughter-grades-recovered").
+    If the prefix matches multiple nodes, returns the candidate list.
 
-        Available because KNOW_THYSELF_ALLOW_FULL_TEXT=1. Use only when
-        full-text egress is acceptable for the configured graph.
+    Args:
+      node_id: Full id ("O04-daughter-grades-recovered", "NOW") or
+        unambiguous short id ("O04", "P01").
 
-        Supports short-id lookup: passing "O04" matches the unique node
-        whose id starts with "O04-" (e.g. "O04-daughter-grades-recovered").
-        If the prefix matches multiple nodes, returns the candidate list.
-
-        Args:
-          node_id: Full id ("O04-daughter-grades-recovered", "NOW") or
-            unambiguous short id ("O04", "P01").
-
-        Returns:
-          {id, type, name, tentative, statement, grounded_by_ids,
-          related_to_ids} on success, or {error: <msg>, matches?: [...]}
-          on failure.
-        """
-        _ensure_loaded()
-        if node_id in _NODE_BY_ID:
-            n = _NODE_BY_ID[node_id]
+    Returns:
+      {id, type, name, tentative, statement, grounded_by_ids,
+      related_to_ids} on success, or {error: <msg>, matches?: [...]}
+      on failure.
+    """
+    _ensure_loaded()
+    if node_id in _NODE_BY_ID:
+        n = _NODE_BY_ID[node_id]
+    else:
+        prefix = node_id.rstrip("-") + "-"
+        cands = [nid for nid in _NODE_BY_ID if nid.startswith(prefix)]
+        if len(cands) == 1:
+            n = _NODE_BY_ID[cands[0]]
+        elif len(cands) > 1:
+            return {"error": "ambiguous id", "matches": cands}
         else:
-            prefix = node_id.rstrip("-") + "-"
-            cands = [nid for nid in _NODE_BY_ID if nid.startswith(prefix)]
-            if len(cands) == 1:
-                n = _NODE_BY_ID[cands[0]]
-            elif len(cands) > 1:
-                return {"error": "ambiguous id", "matches": cands}
-            else:
-                return {"error": f"no node with id {node_id!r}"}
-        return {
-            "id": n["id"],
-            "type": n.get("type", "?"),
-            "name": n.get("name", ""),
-            "tentative": bool(n.get("tentative")),
-            "statement": n.get("statement", ""),
-            "grounded_by_ids": n.get("grounded_by_ids", []),
-            "related_to_ids": n.get("related_to_ids", []),
-        }
+            return {"error": f"no node with id {node_id!r}"}
+    return {
+        "id": n["id"],
+        "type": n.get("type", "?"),
+        "name": n.get("name", ""),
+        "tentative": bool(n.get("tentative")),
+        "statement": n.get("statement", ""),
+        "grounded_by_ids": n.get("grounded_by_ids", []),
+        "related_to_ids": n.get("related_to_ids", []),
+    }
 
 
 if __name__ == "__main__":
