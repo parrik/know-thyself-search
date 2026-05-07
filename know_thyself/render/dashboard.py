@@ -295,15 +295,16 @@ def parse_graph(yaml_path):
         tentative = bool(entry.get("tentative", False))
         horizon = entry.get("horizon")
 
-        prov = entry.get("provenance") or {}
-        deriv = (prov.get("derivation") or {}) if isinstance(prov, dict) else {}
-        attribution = (prov.get("attribution") or {}) if isinstance(prov, dict) else {}
-        evidence = (prov.get("evidence") or {}) if isinstance(prov, dict) else {}
+        # Read flat-English provenance fields directly from the node entry.
+        said_by = entry.get("said_by")
+        said_when = entry.get("said_when")
+        evidence_kind = entry.get("evidence_kind")
+        evidence_notes = entry.get("evidence_notes")
+        evidence_refs = entry.get("evidence_refs") or []
+        derives_from = entry.get("derives_from") or []
+        how_it_follows = entry.get("how_it_follows")
 
         related_to = entry.get("related_to") or []
-        derives_from = deriv.get("from") or []
-        evidence_refs = evidence.get("references") or []
-
         if not isinstance(related_to, list):
             related_to = [related_to]
         if not isinstance(derives_from, list):
@@ -319,13 +320,10 @@ def parse_graph(yaml_path):
 
         # provenance count for "needs second instance" logic on Tentative panel
         prov_count = 0
-        if isinstance(prov, dict):
-            for k in ("attribution", "evidence", "derivation"):
-                v = prov.get(k)
-                if isinstance(v, dict) and v:
-                    prov_count += 1
-                elif isinstance(v, list) and v:
-                    prov_count += len(v)
+        if said_by: prov_count += 1
+        if evidence_kind: prov_count += 1
+        if how_it_follows: prov_count += 1
+        prov_count += len(evidence_refs) + len(derives_from)
 
         nodes.append({
             "id": nid,
@@ -337,9 +335,11 @@ def parse_graph(yaml_path):
             "horizon": horizon,
             "is_forecast": is_forecast,
             "prov_count": prov_count,
-            "attribution": attribution,
-            "evidence": evidence,
-            "derivation": deriv,
+            "said_by": said_by,
+            "said_when": said_when,
+            "evidence_kind": evidence_kind,
+            "evidence_notes": evidence_notes,
+            "how_it_follows": how_it_follows,
             "related_to": [str(x) for x in related_to],
             "derives_from": [str(x) for x in derives_from],
             "evidence_refs": [str(x) for x in evidence_refs],
@@ -1439,14 +1439,11 @@ function openDrawer(id, opts) {
     html += '<div class="caveats"><div class="clab">Caveats</div>' + renderMarkdown(n.caveats) + '</div>';
   }
 
-  if (n.attribution || n.evidence || n.derivation) {
-    const att = n.attribution || {};
-    const ev = n.evidence || {};
-    const dv = n.derivation || {};
+  if (n.said_by || n.evidence_kind || n.how_it_follows) {
     let provHtml = '<div class="provenance"><div class="plab">Provenance</div>';
-    if (att.source) provHtml += `<div><strong>Attribution:</strong> ${escapeHtml(att.source)}${att.date ? ' · ' + escapeHtml(att.date) : ''}</div>`;
-    if (ev.type) provHtml += `<div><strong>Evidence:</strong> ${escapeHtml(ev.type)}${ev.description ? ' — ' + escapeHtml(ev.description) : ''}</div>`;
-    if (dv.method) provHtml += `<div><strong>Derivation:</strong> ${escapeHtml(dv.method)}</div>`;
+    if (n.said_by) provHtml += `<div><strong>Said by:</strong> ${escapeHtml(n.said_by)}${n.said_when ? ' · ' + escapeHtml(n.said_when) : ''}</div>`;
+    if (n.evidence_kind) provHtml += `<div><strong>Evidence:</strong> ${escapeHtml(n.evidence_kind)}${n.evidence_notes ? ' — ' + escapeHtml(n.evidence_notes) : ''}</div>`;
+    if (n.how_it_follows) provHtml += `<div><strong>How it follows:</strong> ${escapeHtml(n.how_it_follows)}</div>`;
     provHtml += '</div>';
     html += provHtml;
   }

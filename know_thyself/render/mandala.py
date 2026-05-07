@@ -100,8 +100,7 @@ def load_nodes(yaml_path):
 
 def derivation_sources(node):
     """Return the list of node ids this node derives from."""
-    deriv = (node.get("provenance") or {}).get("derivation") or {}
-    return [s for s in (deriv.get("from") or []) if s]
+    return [s for s in (node.get("derives_from") or []) if s]
 
 
 def outgoing_edges(node):
