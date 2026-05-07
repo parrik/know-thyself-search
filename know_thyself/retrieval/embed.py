@@ -315,7 +315,7 @@ def openai_embed(nodes, model="text-embedding-3-small"):
 #
 # Same dense-retrieval shape as the OpenAI backend — every node becomes
 # a fixed-dim vector encoding learned semantic features, so cosine
-# captures synonymy that TF-IDF can't (mentor ≈ teacher, sober ≈ clean).
+# captures synonymy that TF-IDF can't (mentor ≈ teacher, doctor ≈ physician).
 # Model runs on CPU; first call downloads weights (~80MB for MiniLM,
 # cached at ~/.cache/huggingface/). No API key, no network after that.
 # ──────────────────────────────────────────────────────────────────────
