@@ -520,6 +520,23 @@
     - O04-daughter-grades-recovered
     - R06-substances
   how_it_follows: "induction across independent instances"
+  edges:
+    # `generalizes` — the overlap is the generalization across the specific episodes
+    - to: O01-first-three-months
+      relation: generalizes
+    - to: O02-running-group
+      relation: generalizes
+    # `grounded_in` — explicit inverse-of-grounds, here against the substances reference
+    - to: R06-substances
+      relation: grounded_in
+      evidence_kind: pattern-across-cases
+      evidence_notes: "Drinking uptick is the fourth corroborating axis (R06 grounds the pattern)"
+    # `contradicts` — the pattern would be contradicted by an episode of routine-break-without-deterioration
+    # (no such instance yet; placeholder for the falsifier)
+    - to: R12-canary-missed-run
+      relation: contradicts
+      evidence_kind: derived-inference
+      evidence_notes: "The canary specifies what would falsify the overlap: a routine break that does NOT produce deterioration in 2+ axes within four weeks"
 - id: P02-holds-positions-in-work
   type: overlap
   name: "Alex holds positions in work even when costly"
@@ -937,6 +954,14 @@
     - P01-routine-as-regulation
     - E01-child-stability-depends-on-alex-stability
   how_it_follows: "normative rule derived from overlap + emergent node"
+  edges:
+    # `derives_from` (edge form) — explicit relationship with provenance,
+    # parallel to the derives_from field. Useful when the edge needs its
+    # own justification beyond the parent-list.
+    - to: P01-routine-as-regulation
+      relation: derives_from
+      evidence_kind: pattern-across-cases
+      evidence_notes: "PR01 codifies the operational consequence of P01: the protected slot is the routine-anchor"
 - id: PR02-one-sitting-manuscript-read
   type: practice
   name: "Read every submitted manuscript in one sitting, pen in hand"
@@ -976,6 +1001,18 @@
   derives_from:
     - R07-lens-kill-darlings
   how_it_follows: "editorial maxim transposed to life; hedge against commitment escalation"
+  edges:
+    # `instantiates` — practice instantiates the editorial lens in life
+    - to: R07-lens-kill-darlings
+      relation: instantiates
+      evidence_kind: derived-inference
+      evidence_notes: "PR03 is the life-application of the editorial maxim"
+    # `qualifies` — the practice qualifies P03 (interpretive-depth-emotional-distance)
+    # by adding a counter-bias when interpretive depth would over-commit
+    - to: P03-interpretive-depth-emotional-distance
+      relation: qualifies
+      evidence_kind: derived-inference
+      evidence_notes: "Bias toward yes-kill counter-acts the over-extension that interpretive depth produces"
 - id: KT01-know-thyself
   type: practice
   name: "Know-thyself — edit the self as a manuscript"
