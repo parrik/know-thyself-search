@@ -74,11 +74,11 @@
       • Political cost of P02 exceeding single-conflict per quarter →
         OQ03 getting acute.
       • Stopped writing the three letters (O08) → distance is winning.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-05" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-05"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  REFERENCES — biographical facts
 # ──────────────────────────────────────────────────────────────────────────────
@@ -93,11 +93,11 @@
     household's center of gravity was books — evenings were reading
     aloud; the bookshop's backroom functioned as homework space.
     Left at 18 for Barnard (English, 2002).
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2025" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report"
+  said_when: "2025"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: R02-career
   type: reference
   name: "Farrar, Straus → Oxford University Press (2005–2024)"
@@ -110,11 +110,11 @@
     a specific willingness to take first books from junior scholars
     where the prose carried, and for editing line-by-line in an era
     when most acquisitions editors had stopped.
-  provenance:
-    attribution: { source: "Alex, self-report + LinkedIn + OUP catalogue", date: "2025" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report + LinkedIn + OUP catalogue"
+  said_when: "2025"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R03-family
   type: reference
   name: "Single parent; daughter Mira (age 14)"
@@ -125,11 +125,11 @@
     been with Alex >90% of nights. Mira visits Daniel ~one weekend/
     month and two school breaks a year. Relationship with Daniel is
     civil, infrequent, channelled mostly through email.
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2025" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report"
+  said_when: "2025"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: R04-move
   type: reference
   name: "Moved NYC → Chicago, August 2024"
@@ -141,11 +141,11 @@
     magnet, 4th in the district). Pay bump ~22%; cost-of-living
     dropped more; real income rose. The move was decided over six
     weeks; Mira was consulted but not consenting in any real sense.
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2025" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report"
+  said_when: "2025"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: R05-sister
   type: reference
   name: "Older sister Helen — died 2007 (age 23)"
@@ -157,11 +157,10 @@
     register of "my sister used to say —" rather than the register of
     grief. The detail matters because other nodes refer to it
     implicitly and should be able to cite it.
-  provenance:
-    attribution: { source: "Alex, self-report, brief mention Apr 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report, brief mention Apr 2025"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: R06-substances
   type: reference
   name: "Substance-use history"
@@ -174,11 +173,10 @@
     the Sep–Nov 2024 stretch (O01), back to ~6/week by April 2025.
     Alex tracks this herself; has not brought it to therapy as of
     May 2025.
-  provenance:
-    attribution: { source: "Alex, self-report (direct, Mar 2025)" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report (direct, Mar 2025)"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 # ── Editorial lenses — canonical external frames Alex thinks with ─────────────
 
 - id: R07-lens-kill-darlings
@@ -189,11 +187,10 @@
     sentence or passage when it does not serve the whole. Alex uses
     it editorially as first principle and applies it to life via
     PR03 (cut-the-forest).
-  provenance:
-    attribution: { source: "Arthur Quiller-Couch, On the Art of Writing (1914)" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Arthur Quiller-Couch, On the Art of Writing (1914)"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R08-lens-iceberg
   type: reference
   name: "Lens: the iceberg theory (Hemingway)"
@@ -202,11 +199,10 @@
     strengthens what remains. Alex applies this to author bios
     in blurbs and to her own self-report style — both, arguably,
     to a fault (see P03 for the personal costs).
-  provenance:
-    attribution: { source: "Hemingway, Death in the Afternoon (1932)" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Hemingway, Death in the Afternoon (1932)"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R09-lens-close-reading
   type: reference
   name: "Lens: close reading (New Criticism)"
@@ -215,11 +211,10 @@
     tradition: the text is self-sufficient and rewards attention
     at word-and-phrase grain. Foundational to how Alex edits and
     to PR02 (one-sitting manuscript read).
-  provenance:
-    attribution: { source: "I. A. Richards, Practical Criticism (1929)" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "I. A. Richards, Practical Criticism (1929)"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R10-lens-reader-fills-gap
   type: reference
   name: "Lens: the reader's job is to fill the gap (Iser)"
@@ -228,11 +223,10 @@
     reader meet; the text alone is insufficient. Alex uses this
     to resist over-editing — leaving the gaps that make the
     reader do work is often the right call.
-  provenance:
-    attribution: { source: "Wolfgang Iser, The Implied Reader (1974)" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Wolfgang Iser, The Implied Reader (1974)"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R11-lens-structural-vs-line
   type: reference
   name: "Lens: structural ≠ line ≠ copy editing"
@@ -242,11 +236,10 @@
     is it correct? Conflating them produces bad editing — Alex's
     acquisitions context is mostly structural; the line work is
     hers by habit, not role.
-  provenance:
-    attribution: { source: "Standard publishing craft vocabulary" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Standard publishing craft vocabulary"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 # ── Canaries — signals that predict a state change ────────────────────────────
 
 - id: R12-canary-missed-run
@@ -257,13 +250,14 @@
     → the routine is breaking (P01 failure mode from O01). Act on
     this before drinking rises — if you wait for R13, you are
     already downstream.
-  provenance:
-    attribution: { source: "Derived from O01, O02" }
-    evidence:
-      type: derived-inference
-      references: [O01-first-three-months, O02-running-group]
-    derivation: { from: [O01-first-three-months], method: "derived threshold" }
-
+  said_by: "Derived from O01, O02"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - O01-first-three-months
+    - O02-running-group
+  derives_from:
+    - O01-first-three-months
+  how_it_follows: "derived threshold"
 - id: R13-canary-drinking-over-eight
   type: reference
   name: "Canary: drinking >8/week (two weeks running)"
@@ -272,13 +266,14 @@
     → the Sep–Nov 2024 shape (O01) is returning. Tied to N01;
     may be the shortest-latency signal Alex has for isolation
     creep.
-  provenance:
-    attribution: { source: "Derived from R06, O01" }
-    evidence:
-      type: derived-inference
-      references: [R06-substances, O01-first-three-months]
-    derivation: { from: [R06-substances], method: "derived threshold" }
-
+  said_by: "Derived from R06, O01"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - R06-substances
+    - O01-first-three-months
+  derives_from:
+    - R06-substances
+  how_it_follows: "derived threshold"
 - id: R14-canary-silent-mornings
   type: reference
   name: "Canary: Mira stops initiating conversation in the mornings"
@@ -286,13 +281,14 @@
     Mira's default is chatty-at-breakfast. When that stops for a
     full week, something downstream of E01 is deteriorating.
     Usually earlier than grades.
-  provenance:
-    attribution: { source: "Alex, self-articulated after O04" }
-    evidence:
-      type: derived-inference
-      references: [O04-daughter-grades-recovered, E01-child-stability-depends-on-alex-stability]
-    derivation: { from: [E01-child-stability-depends-on-alex-stability], method: "derived behavioral signal" }
-
+  said_by: "Alex, self-articulated after O04"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - O04-daughter-grades-recovered
+    - E01-child-stability-depends-on-alex-stability
+  derives_from:
+    - E01-child-stability-depends-on-alex-stability
+  how_it_follows: "derived behavioral signal"
 - id: R15-canary-political-budget
   type: reference
   name: "Canary: >1 acquisitions-committee conflict per quarter"
@@ -300,13 +296,14 @@
     P02 is real but the political budget is finite. Second
     Ferraro-type fight in a quarter without the first publishing
     → P02 is becoming a liability. Tied to OQ03.
-  provenance:
-    attribution: { source: "Alex, self-articulated" }
-    evidence:
-      type: derived-inference
-      references: [P02-holds-positions-in-work, O05-workplace-conflict]
-    derivation: { from: [P02-holds-positions-in-work], method: "derived threshold" }
-
+  said_by: "Alex, self-articulated"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - P02-holds-positions-in-work
+    - O05-workplace-conflict
+  derives_from:
+    - P02-holds-positions-in-work
+  how_it_follows: "derived threshold"
 # ── Antipatterns — failure modes Alex watches for in herself ──────────────────
 
 - id: R16-antipattern-list-for-lists-sake
@@ -317,11 +314,10 @@
     not because it is the best book the Press could publish.
     Tempting for new directors wanting early wins. Alex has done
     it twice in fifteen years and regretted both.
-  provenance:
-    attribution: { source: "Standard editorial failure mode, Alex-acknowledged" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Standard editorial failure mode, Alex-acknowledged"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R17-antipattern-trend-chasing
   type: reference
   name: "Antipattern: acquisitions that chase an academic trend"
@@ -330,11 +326,10 @@
     The books that define a field come from people who were writing
     against or to one side of the current wave. Alex's default
     stance; worth naming because it can flip under pressure.
-  provenance:
-    attribution: { source: "Editorial folk wisdom" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Editorial folk wisdom"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R18-antipattern-skip-external-review
   type: reference
   name: "Antipattern: skipping external peer review to move fast"
@@ -343,11 +338,10 @@
     the season is compressed. But the skip is invisible at sign
     time and expensive at publication. Non-negotiable floor at
     UChicago: 2 external reviews per book.
-  provenance:
-    attribution: { source: "UChicago house rule + Alex's practice" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "UChicago house rule + Alex's practice"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  OBSERVATIONS — specific episodes
 # ──────────────────────────────────────────────────────────────────────────────
@@ -367,11 +361,12 @@
     week. One specific night, Oct 19, Mira asked Alex something at
     dinner and Alex realized she had not heard the first half of the
     sentence.
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2024-12" }
-    evidence: { type: self-report }
-    derivation: { from: [R04-move], method: "direct" }
-
+  said_by: "Alex, self-report"
+  said_when: "2024-12"
+  evidence_kind: self-report
+  derives_from:
+    - R04-move
+  how_it_follows: "direct"
 - id: O02-running-group
   type: observation
   name: "Joined Chicago Lakefront Sunday Runners — December 2024"
@@ -385,11 +380,12 @@
     social anchor, not around willpower — and Alex has noticed
     that when Priya travels, her own adherence drops the week
     after.
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2025-01" }
-    evidence: { type: self-report }
-    derivation: { from: [O01-first-three-months], method: "direct; causal relation to prior state" }
-
+  said_by: "Alex, self-report"
+  said_when: "2025-01"
+  evidence_kind: self-report
+  derives_from:
+    - O01-first-three-months
+  how_it_follows: "direct; causal relation to prior state"
 - id: O03-therapist-referral
   type: observation
   name: "Started weekly therapy — February 2025"
@@ -402,11 +398,11 @@
     the affair in 2020–2021 (O06), the drinking uptick (R06).
     HANDLING: Alex is private about session content. Do not ask
     about specifics unless Alex raises them.
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2025-05" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report"
+  said_when: "2025-05"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: O04-daughter-grades-recovered
   type: observation
   name: "Mira's grades recovered — spring 2025"
@@ -417,11 +413,13 @@
     February, and (b) the household stabilizing as Alex's own
     routine came back. Mira, in passing: "It's easier when you're
     not weird in the mornings."
-  provenance:
-    attribution: { source: "Alex, self-report + Q3 report card", date: "2025-05" }
-    evidence: { type: external-record }
-    derivation: { from: [R03-family, R04-move], method: "direct" }
-
+  said_by: "Alex, self-report + Q3 report card"
+  said_when: "2025-05"
+  evidence_kind: external-record
+  derives_from:
+    - R03-family
+    - R04-move
+  how_it_follows: "direct"
 - id: O05-workplace-conflict
   type: observation
   name: "Acquisitions conflict with David Ferraro — March 2025"
@@ -435,11 +433,12 @@
     David has been formal-polite since. Alex's description:
     "stretched but not wrong." She has not initiated a repair
     conversation and probably will not.
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2025-04" }
-    evidence: { type: self-report }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Alex, self-report"
+  said_when: "2025-04"
+  evidence_kind: self-report
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 - id: O06-post-divorce-affair
   type: observation
   name: "Brief affair with an OUP author, 2020–2021"
@@ -454,11 +453,11 @@
     for interpretations about emotional processing (see N02) and
     for the general avoidance pattern (P03).
     HANDLING: do not raise unprompted. If Alex raises, match register.
-  provenance:
-    attribution: { source: "Alex, self-report, offhand Feb 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R03-family], method: "direct" }
-
+  said_by: "Alex, self-report, offhand Feb 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R03-family
+  how_it_follows: "direct"
 - id: O07-kitchen-dinners
   type: observation
   name: "Monthly author dinners at the Hyde Park house"
@@ -470,11 +469,13 @@
     editorial conversations of their book happened at that table.
     She does not track it as "networking"; it is closer to a
     practice. Mira usually eats upstairs.
-  provenance:
-    attribution: { source: "Alex, self-report + one author's book acknowledgements (J. Tanaka, forthcoming UChicago)", date: "2025-05" }
-    evidence: { type: external-record }
-    derivation: { from: [R02-career, R04-move], method: "direct" }
-
+  said_by: "Alex, self-report + one author's book acknowledgements (J. Tanaka, forthcoming UChicago)"
+  said_when: "2025-05"
+  evidence_kind: external-record
+  derives_from:
+    - R02-career
+    - R04-move
+  how_it_follows: "direct"
 - id: O08-correspondence-discipline
   type: observation
   name: "Fifteen-year letter correspondence with three authors"
@@ -485,11 +486,12 @@
     in Cape Town. ~6 letters/year each. The habit is closed — she
     has added no one to the circle since 2014. When she is running
     behind elsewhere, this is the thing that does not slip.
-  provenance:
-    attribution: { source: "Alex, self-report", date: "2025-03" }
-    evidence: { type: self-report }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Alex, self-report"
+  said_when: "2025-03"
+  evidence_kind: self-report
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  OVERLAPS — patterns grounded by 2+ independent episodes
 # ──────────────────────────────────────────────────────────────────────────────
@@ -504,16 +506,20 @@
     returns, these stabilize. Not preference — appears structural.
     Three independent episodes so far; the drinking uptick (R06)
     adds a fourth corroborating axis.
-  provenance:
-    attribution: { source: "Pattern across episodes" }
-    evidence:
-      type: pattern-across-cases
-      references: [O01-first-three-months, O02-running-group, O04-daughter-grades-recovered, R06-substances]
-      description: "Routine-breakdown Sep–Nov produced overwhelm; routine-restart Dec produced return to baseline; Mira's Q3 recovery coincided with Alex's routine re-establishing; drinking tracked routine state"
-    derivation:
-      from: [O01-first-three-months, O02-running-group, O04-daughter-grades-recovered, R06-substances]
-      method: "induction across independent instances"
-
+  said_by: "Pattern across episodes"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - O01-first-three-months
+    - O02-running-group
+    - O04-daughter-grades-recovered
+    - R06-substances
+  evidence_notes: "Routine-breakdown Sep–Nov produced overwhelm; routine-restart Dec produced return to baseline; Mira's Q3 recovery coincided with Alex's routine re-establishing; drinking tracked routine state"
+  derives_from:
+    - O01-first-three-months
+    - O02-running-group
+    - O04-daughter-grades-recovered
+    - R06-substances
+  how_it_follows: "induction across independent instances"
 - id: P02-holds-positions-in-work
   type: overlap
   name: "Alex holds positions in work even when costly"
@@ -523,16 +529,16 @@
     outcomes (Chen contract, earlier OUP acquisitions) and recurring
     costs (cooled relationships with overruled colleagues — Ferraro
     being the current instance).
-  provenance:
-    attribution: { source: "Pattern across episodes" }
-    evidence:
-      type: pattern-across-cases
-      references: [R02-career, O05-workplace-conflict]
-      description: "March 2025 (Ferraro/Chen) is one detailed instance; R02 references at least two similar stretches at OUP (2016, 2021) Alex has described in passing"
-    derivation:
-      from: [R02-career, O05-workplace-conflict]
-      method: "induction; note: only two episodes detailed — promotion to overlap is marginal"
-
+  said_by: "Pattern across episodes"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - R02-career
+    - O05-workplace-conflict
+  evidence_notes: "March 2025 (Ferraro/Chen) is one detailed instance; R02 references at least two similar stretches at OUP (2016, 2021) Alex has described in passing"
+  derives_from:
+    - R02-career
+    - O05-workplace-conflict
+  how_it_follows: "induction; note: only two episodes detailed — promotion to overlap is marginal"
 - id: P03-interpretive-depth-emotional-distance
   type: overlap
   name: "Interpretive depth + emotional distance — toward self and others"
@@ -547,16 +553,18 @@
     more like a policy. Generative for editing work; costly for
     relationships where the other party needs her present as
     feeling-first.
-  provenance:
-    attribution: { source: "Pattern across episodes" }
-    evidence:
-      type: pattern-across-cases
-      references: [O03-therapist-referral, O05-workplace-conflict, O06-post-divorce-affair]
-      description: "Three independent instances of the same shape — interpretive acuity, emotional distance"
-    derivation:
-      from: [O03-therapist-referral, O05-workplace-conflict, O06-post-divorce-affair]
-      method: "induction across independent instances"
-
+  said_by: "Pattern across episodes"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - O03-therapist-referral
+    - O05-workplace-conflict
+    - O06-post-divorce-affair
+  evidence_notes: "Three independent instances of the same shape — interpretive acuity, emotional distance"
+  derives_from:
+    - O03-therapist-referral
+    - O05-workplace-conflict
+    - O06-post-divorce-affair
+  how_it_follows: "induction across independent instances"
 # ──────────────────────────────────────────────────────────────────────────────
 #  NOVEL — single-derivation interpretations. TENTATIVE.
 # ──────────────────────────────────────────────────────────────────────────────
@@ -573,15 +581,15 @@
     was what let the routine return. The fact that Alex's adherence
     drops when Priya travels (O02 detail) is a second micro-
     corroboration but not yet independent enough to promote.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      description: "One detailed episode (O01) + the shape of the O02 recovery + Priya-travel detail"
-      references: [O01-first-three-months, O02-running-group]
-    derivation:
-      from: [O01-first-three-months]
-      method: "inductive from one case, with O02 suggesting mechanism"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_notes: "One detailed episode (O01) + the shape of the O02 recovery + Priya-travel detail"
+  evidence_refs:
+    - O01-first-three-months
+    - O02-running-group
+  derives_from:
+    - O01-first-three-months
+  how_it_follows: "inductive from one case, with O02 suggesting mechanism"
   caveats: |
     Could be wrong:
     (1) O01 conflates isolation with several other changes (new job,
@@ -603,14 +611,14 @@
     the drinking uptick). This may be appropriate for stage; it
     may also be another instance of P03 — going interpretive
     instead of going toward the feeling.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      references: [O03-therapist-referral, P03-interpretive-depth-emotional-distance]
-    derivation:
-      from: [O03-therapist-referral]
-      method: "interpretive; single detailed source"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - O03-therapist-referral
+    - P03-interpretive-depth-emotional-distance
+  derives_from:
+    - O03-therapist-referral
+  how_it_follows: "interpretive; single detailed source"
   caveats: |
     Speculative. Alex has been private about session content (O03
     HANDLING), so the interpretation rests on one short framing
@@ -666,15 +674,21 @@
     Each scenario is tentative because each requires a specific
     low-probability intersection. Single-observer (graph is
     read by model with Alex's framing). Flag for review.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      description: "Intersection readings at trajectory-inversion points"
-      references: [OQ01-long-term-plan, OQ02-relationship-with-ex, R06-substances, R05-sister, O06-post-divorce-affair, P02-holds-positions-in-work]
-    derivation:
-      from: [OQ01-long-term-plan, OQ02-relationship-with-ex, R06-substances]
-      method: "scenario synthesis across open questions + references"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_notes: "Intersection readings at trajectory-inversion points"
+  evidence_refs:
+    - OQ01-long-term-plan
+    - OQ02-relationship-with-ex
+    - R06-substances
+    - R05-sister
+    - O06-post-divorce-affair
+    - P02-holds-positions-in-work
+  derives_from:
+    - OQ01-long-term-plan
+    - OQ02-relationship-with-ex
+    - R06-substances
+  how_it_follows: "scenario synthesis across open questions + references"
   caveats: |
     Function of this node is NOT to predict. It is to be a
     benchmark against which surprise becomes visible. Each
@@ -696,14 +710,15 @@
     read. The pattern is real; the proposed explanation is novel
     and could be wrong in both directions (post-hoc narrativizing,
     or real but over-claimed).
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      references: [R02-career, R05-sister]
-    derivation:
-      from: [R02-career, R05-sister]
-      method: "interpretive; single derivation, speculative link"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - R02-career
+    - R05-sister
+  derives_from:
+    - R02-career
+    - R05-sister
+  how_it_follows: "interpretive; single derivation, speculative link"
   caveats: |
     Highly speculative. Alex has never connected these herself.
     Risk of retrofitting a clean story onto a messy pattern.
@@ -727,23 +742,21 @@
     parenting infrastructure, not self-indulgence. Mira's own line
     ("easier when you're not weird in the mornings") corroborates
     but is not the basis.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      description: "Intersection-produced — not present in P01 alone or O04 alone"
-      references: [P01-routine-as-regulation, O04-daughter-grades-recovered]
-    derivation:
-      from: [P01-routine-as-regulation, O04-daughter-grades-recovered]
-      method: "intersection: P01 + O04 → downstream link between Alex's routine and Mira's stability"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_notes: "Intersection-produced — not present in P01 alone or O04 alone"
+  evidence_refs:
+    - P01-routine-as-regulation
+    - O04-daughter-grades-recovered
+  derives_from:
+    - P01-routine-as-regulation
+    - O04-daughter-grades-recovered
+  how_it_follows: "intersection: P01 + O04 → downstream link between Alex's routine and Mira's stability"
   edges:
     - to: P01-routine-as-regulation
       relation: emergent_from
-      provenance:
-        evidence:
-          type: derived-inference
-          description: "Produced by the intersection of P01 and O04"
-
+      evidence_kind: derived-inference
+      evidence_notes: "Produced by the intersection of P01 and O04"
 # ── Inferencers — time-horizon forecasts (gold-ring emergents) ────────────────
 
 - id: E03-forecast-1-month
@@ -764,16 +777,17 @@
     • OQ01 (Chicago duration) unanswered; OQ02 (Daniel) unanswered.
     Reliable because horizon is short and most variables are
     calendar-bound. Low chance Alex surprises herself here.
-  provenance:
-    attribution: { source: "Forecast, May 2025" }
-    evidence:
-      type: derived-inference
-      description: "Near-horizon projection from existing rhythms + NOW week/month list"
-      references: [NOW, P01-routine-as-regulation, PR01-protect-sunday-run]
-    derivation:
-      from: [NOW, P01-routine-as-regulation]
-      method: "extrapolation from existing cadences; short-horizon = low variance"
-
+  said_by: "Forecast, May 2025"
+  evidence_kind: derived-inference
+  evidence_notes: "Near-horizon projection from existing rhythms + NOW week/month list"
+  evidence_refs:
+    - NOW
+    - P01-routine-as-regulation
+    - PR01-protect-sunday-run
+  derives_from:
+    - NOW
+    - P01-routine-as-regulation
+  how_it_follows: "extrapolation from existing cadences; short-horizon = low variance"
 - id: E04-forecast-90-day
   type: emergent
   inferencer: true
@@ -794,15 +808,17 @@
       editorial season may trigger it.
     Variance is medium. The Priya-Marcus transition and the
     Mira-summer decision are the hinges.
-  provenance:
-    attribution: { source: "Forecast, May 2025" }
-    evidence:
-      type: derived-inference
-      references: [NOW, E01-child-stability-depends-on-alex-stability, OQ01-long-term-plan, OQ02-relationship-with-ex]
-    derivation:
-      from: [NOW, OQ01-long-term-plan]
-      method: "structural projection; hinge-variables named explicitly"
-
+  said_by: "Forecast, May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - NOW
+    - E01-child-stability-depends-on-alex-stability
+    - OQ01-long-term-plan
+    - OQ02-relationship-with-ex
+  derives_from:
+    - NOW
+    - OQ01-long-term-plan
+  how_it_follows: "structural projection; hinge-variables named explicitly"
 - id: E05-forecast-12-month
   type: emergent
   inferencer: true
@@ -826,14 +842,19 @@
       that's the rule for 12-month windows.
     Variance is high. Use this as a prompt-for-attention, not a
     prediction — its function is to be surprised by.
-  provenance:
-    attribution: { source: "Forecast, May 2025" }
-    evidence:
-      type: derived-inference
-      references: [NOW, N01-isolation-is-early-warning, N03-helen-structural-presence, OQ01-long-term-plan, OQ03-sustainability-of-distance]
-    derivation:
-      from: [NOW, OQ01-long-term-plan, OQ03-sustainability-of-distance]
-      method: "long-horizon projection; explicitly expects to be wrong on some axis"
+  said_by: "Forecast, May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - NOW
+    - N01-isolation-is-early-warning
+    - N03-helen-structural-presence
+    - OQ01-long-term-plan
+    - OQ03-sustainability-of-distance
+  derives_from:
+    - NOW
+    - OQ01-long-term-plan
+    - OQ03-sustainability-of-distance
+  how_it_follows: "long-horizon projection; explicitly expects to be wrong on some axis"
   caveats: |
     The purpose of a 12-month forecast in this schema is not to
     be right. It is to be a benchmark against which surprise
@@ -853,15 +874,16 @@
     (editor/author over wine) permits depth without exposure. The
     letter correspondence (O08) is its non-social twin. Operationally
     legible: the dinners are not optional; they are structural.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      description: "Intersection-produced; neither O07 nor P03 contain this alone"
-      references: [O07-kitchen-dinners, P03-interpretive-depth-emotional-distance]
-    derivation:
-      from: [O07-kitchen-dinners, P03-interpretive-depth-emotional-distance]
-      method: "intersection"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_notes: "Intersection-produced; neither O07 nor P03 contain this alone"
+  evidence_refs:
+    - O07-kitchen-dinners
+    - P03-interpretive-depth-emotional-distance
+  derives_from:
+    - O07-kitchen-dinners
+    - P03-interpretive-depth-emotional-distance
+  how_it_follows: "intersection"
   edges:
     - to: P03-interpretive-depth-emotional-distance
       relation: emergent_from
@@ -883,14 +905,11 @@
     has vocabulary for this. The equivalency is informational,
     not prescriptive: it names a thing, it does not reduce P01
     to the external frame.
-  provenance:
-    attribution: { source: "General philosophical/contemplative literature on practice and ritual" }
-    evidence:
-      type: external-record
-      description: "Framework is external and well-documented; the link to Alex's case is interpretive"
-    derivation:
-      from: []
-      method: "external framework bridged to P01"
+  said_by: "General philosophical/contemplative literature on practice and ritual"
+  evidence_kind: external-record
+  evidence_notes: "Framework is external and well-documented; the link to Alex's case is interpretive"
+  derives_from: []
+  how_it_follows: "external framework bridged to P01"
   edges:
     - to: P01-routine-as-regulation
       relation: grounds
@@ -908,15 +927,16 @@
     The routine is upstream of everything else and Mira's stability
     indexes off it — so protecting it is operational infrastructure,
     not self-indulgence.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-05" }
-    evidence:
-      type: pattern-across-cases
-      references: [P01-routine-as-regulation, E01-child-stability-depends-on-alex-stability]
-    derivation:
-      from: [P01-routine-as-regulation, E01-child-stability-depends-on-alex-stability]
-      method: "normative rule derived from overlap + emergent node"
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-05"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - P01-routine-as-regulation
+    - E01-child-stability-depends-on-alex-stability
+  derives_from:
+    - P01-routine-as-regulation
+    - E01-child-stability-depends-on-alex-stability
+  how_it_follows: "normative rule derived from overlap + emergent node"
 - id: PR02-one-sitting-manuscript-read
   type: practice
   name: "Read every submitted manuscript in one sitting, pen in hand"
@@ -927,15 +947,14 @@
     in pencil, structural notes in a blue-ruled notebook afterward.
     Typical duration 3–5 hours. Non-negotiable on Saturdays in
     commissioning season.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-01" }
-    evidence:
-      type: self-report
-      references: [R02-career]
-    derivation:
-      from: [R02-career]
-      method: "normative rule derived from career-long practice + stated inheritance"
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-01"
+  evidence_kind: self-report
+  evidence_refs:
+    - R02-career
+  derives_from:
+    - R02-career
+  how_it_follows: "normative rule derived from career-long practice + stated inheritance"
 - id: PR03-cut-the-forest
   type: practice
   name: "Reveal thyself — monthly commitment review"
@@ -948,15 +967,15 @@
     uncertain — escalation of commitment (Alex's known weakness)
     pulls the other way. Direct application of R07 (kill your
     darlings) to life.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-02" }
-    evidence:
-      type: pattern-across-cases
-      references: [R07-lens-kill-darlings, P03-interpretive-depth-emotional-distance]
-    derivation:
-      from: [R07-lens-kill-darlings]
-      method: "editorial maxim transposed to life; hedge against commitment escalation"
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-02"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - R07-lens-kill-darlings
+    - P03-interpretive-depth-emotional-distance
+  derives_from:
+    - R07-lens-kill-darlings
+  how_it_follows: "editorial maxim transposed to life; hedge against commitment escalation"
 - id: KT01-know-thyself
   type: practice
   name: "Know-thyself — edit the self as a manuscript"
@@ -969,15 +988,17 @@
     with plausible interpretations? Done roughly twice a year in
     a long walk along the Lakefront. This node and the graph it
     points to ARE the instrument.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-04" }
-    evidence:
-      type: pattern-across-cases
-      references: [R09-lens-close-reading, R11-lens-structural-vs-line, P03-interpretive-depth-emotional-distance]
-    derivation:
-      from: [R09-lens-close-reading, R11-lens-structural-vs-line]
-      method: "editorial discipline reflexively applied to self"
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-04"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - R09-lens-close-reading
+    - R11-lens-structural-vs-line
+    - P03-interpretive-depth-emotional-distance
+  derives_from:
+    - R09-lens-close-reading
+    - R11-lens-structural-vs-line
+  how_it_follows: "editorial discipline reflexively applied to self"
 # ──────────────────────────────────────────────────────────────────────────────
 #  OPEN QUESTIONS
 # ──────────────────────────────────────────────────────────────────────────────
@@ -992,11 +1013,11 @@
     actively maintain the Brooklyn professional network or let it
     taper. Do not let this get quietly absorbed into an assumed
     answer — Alex should decide explicitly.
-  provenance:
-    attribution: { source: "Open as of May 2025" }
-    evidence: { type: derived-inference }
-    derivation: { from: [R04-move], method: "unresolved" }
-
+  said_by: "Open as of May 2025"
+  evidence_kind: derived-inference
+  derives_from:
+    - R04-move
+  how_it_follows: "unresolved"
 - id: OQ02-relationship-with-ex
   type: open
   name: "Is the distance from Daniel stable or in drift?"
@@ -1007,11 +1028,11 @@
     about but has not named? Relevant to Mira's college-choice set,
     to Alex's relationship with her own parents, and to the degree
     of permanence OQ01 decides.
-  provenance:
-    attribution: { source: "Open as of May 2025" }
-    evidence: { type: derived-inference }
-    derivation: { from: [R03-family], method: "unresolved" }
-
+  said_by: "Open as of May 2025"
+  evidence_kind: derived-inference
+  derives_from:
+    - R03-family
+  how_it_follows: "unresolved"
 - id: OQ03-sustainability-of-distance
   type: open
   name: "Is P03 (interpretive depth + emotional distance) sustainable in the role?"
@@ -1024,11 +1045,11 @@
     both directions: should she adjust, or should she stay,
     recognizing that the distance is part of what makes the
     editing work?
-  provenance:
-    attribution: { source: "Open as of May 2025" }
-    evidence: { type: derived-inference }
-    derivation: { from: [P03-interpretive-depth-emotional-distance], method: "unresolved" }
-
+  said_by: "Open as of May 2025"
+  evidence_kind: derived-inference
+  derives_from:
+    - P03-interpretive-depth-emotional-distance
+  how_it_follows: "unresolved"
 # ──────────────────────────────────────────────────────────────────────────────
 #  BODY / HEALTH — texture the graph lacked until now
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1047,11 +1068,10 @@
     and noted Alex is within the typical 44–47 onset window. Alex
     has not scheduled the follow-up. She has a mind she has a
     vocabulary for; the body is a thing that is happening to her.
-  provenance:
-    attribution: { source: "Alex, self-report, offhand Mar 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report, offhand Mar 2025"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: R20-lump-biopsy
   type: reference
   name: "Breast lump found + biopsied clear, April 2021"
@@ -1065,11 +1085,10 @@
     The two weeks of waiting produced a specific thought she has
     not repeated aloud: the sentence she would want to say to Mira
     if it went the other way. She has never written it down.
-  provenance:
-    attribution: { source: "Alex, self-report, raised once Jan 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report, raised once Jan 2025"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: R21-back-pain
   type: reference
   name: "Chronic low-grade lumbar issue (L4–L5)"
@@ -1081,11 +1100,11 @@
     roller. Worse under desk-heavy weeks, better when running
     consistent. Does not tell authors she is in pain when the dinner
     runs past 10pm, but she is.
-  provenance:
-    attribution: { source: "Alex, self-report + 2019 PT records" }
-    evidence: { type: external-record }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Alex, self-report + 2019 PT records"
+  evidence_kind: external-record
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 - id: R22-pulmonology-followup
   type: reference
   name: "Unscheduled pulmonology follow-up (2013 pneumonia thread)"
@@ -1099,11 +1118,11 @@
     unsolicited) on a post-it that has moved twice without being
     acted on. Not high-probability anything — low-grade avoided
     infrastructure.
-  provenance:
-    attribution: { source: "Alex, self-report + 2013 discharge note" }
-    evidence: { type: external-record }
-    derivation: { from: [R06-substances], method: "direct" }
-
+  said_by: "Alex, self-report + 2013 discharge note"
+  evidence_kind: external-record
+  derives_from:
+    - R06-substances
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  FINANCIAL — texture the graph lacked until now
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1121,11 +1140,11 @@
     what she sold for and what she paid plus transaction costs
     ended up being about $170K smaller than planned. She has not
     looked at the refi window since.
-  provenance:
-    attribution: { source: "Alex, self-report + closing documents" }
-    evidence: { type: external-record }
-    derivation: { from: [R04-move], method: "direct" }
-
+  said_by: "Alex, self-report + closing documents"
+  evidence_kind: external-record
+  derives_from:
+    - R04-move
+  how_it_follows: "direct"
 - id: R24-book-royalties
   type: reference
   name: "Royalty tail from a 2012 trade title"
@@ -1139,11 +1158,11 @@
     statements in a manila folder. It is one of two physical
     folders in her home office; the other is Mira's medical
     records.
-  provenance:
-    attribution: { source: "Alex, self-report + OUP royalty statements" }
-    evidence: { type: external-record }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Alex, self-report + OUP royalty statements"
+  evidence_kind: external-record
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 - id: R25-retirement-savings
   type: reference
   name: "Retirement savings begin 2018; money carries Montgomery Books weight"
@@ -1159,11 +1178,12 @@
     to money: there is a specific flinch at any spending that
     looks like hedging against unlikely misfortune (life insurance,
     umbrella policies). Partly values, partly the flinch.
-  provenance:
-    attribution: { source: "Alex, self-report + Fidelity statements" }
-    evidence: { type: external-record }
-    derivation: { from: [R01-origin, R02-career], method: "direct" }
-
+  said_by: "Alex, self-report + Fidelity statements"
+  evidence_kind: external-record
+  derives_from:
+    - R01-origin
+    - R02-career
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  RELATIONAL — beyond the named cast
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1180,11 +1200,10 @@
     named the drop-off. The drift is symmetrical. The last time
     they spoke, Nadia said she would come out in the spring; it is
     now spring.
-  provenance:
-    attribution: { source: "Alex, self-report, Feb 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report, Feb 2025"
+  evidence_kind: self-report
+  derives_from: []
+  how_it_follows: "direct"
 - id: R27-yonas
   type: reference
   name: "Yonas Tesfaye — junior editor at OUP, monthly email"
@@ -1196,11 +1215,11 @@
     read on. Alex answers — 3–9 days late, usually at 10:42pm, always
     generous in content. She does not initiate. Yonas has not named
     this and probably will not.
-  provenance:
-    attribution: { source: "Alex, self-report + Gmail thread count" }
-    evidence: { type: external-record }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Alex, self-report + Gmail thread count"
+  evidence_kind: external-record
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 - id: R28-father-slowing
   type: reference
   name: "Father's visible slowing; unvisited since August"
@@ -1214,11 +1233,11 @@
     every Sunday 10am Central; Alex sometimes takes the call
     partway through a run, holding the phone against her ear while
     walking.
-  provenance:
-    attribution: { source: "Alex, self-report, Apr 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R01-origin], method: "direct" }
-
+  said_by: "Alex, self-report, Apr 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R01-origin
+  how_it_follows: "direct"
 - id: R29-uchicago-senior-colleague
   type: reference
   name: "Lunch asks from a senior male colleague at UChicago"
@@ -1233,11 +1252,11 @@
     with Dr. Rivera.
     HANDLING: private; do not raise unprompted. If Alex surfaces,
     match register.
-  provenance:
-    attribution: { source: "Alex, self-report, oblique Mar 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R04-move], method: "direct" }
-
+  said_by: "Alex, self-report, oblique Mar 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R04-move
+  how_it_follows: "direct"
 - id: R30-rita
   type: reference
   name: "Rita Hoffmann — retired Brooklyn neighbor, paper letters"
@@ -1249,11 +1268,10 @@
     letters are typed on an actual typewriter. Alex keeps them in
     the desk drawer with the OUP royalty statements (R24). Has
     not visited Rita since the move.
-  provenance:
-    attribution: { source: "Alex, self-report + letters retained" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report + letters retained"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  READING / CULTURAL LIFE outside the work
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1273,11 +1291,10 @@
     run. Bowen's specific gift — interiority that the narrator
     declines to name — is the one Alex has quietly been trying to
     learn since 2011.
-  provenance:
-    attribution: { source: "Alex, self-report + Goodreads (private account)" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report + Goodreads (private account)"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R32-orioles-crossword
   type: reference
   name: "One Orioles game a week; Saturday crossword in pencil"
@@ -1290,11 +1307,11 @@
     take four days for a Saturday and not finish rather than look
     up a single answer. A specific kind of honor code about
     difficulty.
-  provenance:
-    attribution: { source: "Alex, self-report, Feb 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R01-origin], method: "direct" }
-
+  said_by: "Alex, self-report, Feb 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R01-origin
+  how_it_follows: "direct"
 - id: R33-religious-formation
   type: reference
   name: "Secular-Episcopalian formation; editorial ambivalence"
@@ -1308,11 +1325,12 @@
     dismiss, too formed to belong. This affects editorial
     judgments in ways she can usually name and occasionally
     cannot.
-  provenance:
-    attribution: { source: "Alex, self-report, Mar 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R01-origin, R02-career], method: "direct" }
-
+  said_by: "Alex, self-report, Mar 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R01-origin
+    - R02-career
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  POLITICAL / CIVIC
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1329,11 +1347,10 @@
     (registered in Cook County since Oct 2024). Does not canvass
     or organize. Has declined two requests from Chen to sign
     open letters about academic freedom.
-  provenance:
-    attribution: { source: "Alex, self-report + ActBlue history" }
-    evidence: { type: external-record }
-    derivation: { from: [], method: "direct" }
-
+  said_by: "Alex, self-report + ActBlue history"
+  evidence_kind: external-record
+  derives_from: []
+  how_it_follows: "direct"
 - id: R35-seriousness-of-field
   type: reference
   name: "Quiet pride in being serious in a field whose seriousness is declining"
@@ -1346,11 +1363,11 @@
     unostentatious commitment. The same stance underwrites her
     resistance to R16 (list-filling) and R17 (trend-chasing).
     Adjacent to R33 but not reducible to it.
-  provenance:
-    attribution: { source: "Pattern across Alex's statements on editorial practice, 2024–2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Pattern across Alex's statements on editorial practice, 2024–2025"
+  evidence_kind: self-report
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  SEX / INTIMACY — beyond the 2020–2021 affair
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1368,11 +1385,11 @@
     evasive; she was too specific; the geography was wrong). She
     has not tried to articulate a unified reason.
     HANDLING: private. Alex has not raised this with Dr. Rivera.
-  provenance:
-    attribution: { source: "Alex, self-report, single oblique mention Apr 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R03-family], method: "direct" }
-
+  said_by: "Alex, self-report, single oblique mention Apr 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R03-family
+  how_it_follows: "direct"
 - id: O10-intimacy-ambivalence
   type: observation
   name: "Unresolved: partner vs. editorial intimacy as enough"
@@ -1383,11 +1400,13 @@
     well-known frame. The question of whether that is sufficient,
     or whether it is a reasonable-looking substitute for something
     she is quietly missing, is unnamed. See OQ04.
-  provenance:
-    attribution: { source: "Alex, self-report, implicit across Mar–May 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [O09-dating-app-pattern, O06-post-divorce-affair, O07-kitchen-dinners], method: "direct" }
-
+  said_by: "Alex, self-report, implicit across Mar–May 2025"
+  evidence_kind: self-report
+  derives_from:
+    - O09-dating-app-pattern
+    - O06-post-divorce-affair
+    - O07-kitchen-dinners
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  PROFESSIONAL DARK MATTER — scars, brittleness, signature
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1407,11 +1426,11 @@
     it — not as "I was wrong" but as "I was right in a way that
     would have been wrong to act on for much longer." A specific
     epistemic scar.
-  provenance:
-    attribution: { source: "Alex, self-report, oblique Jan 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Alex, self-report, oblique Jan 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 - id: O12-inherited-author-third-book
   type: observation
   name: "An inherited OUP author whose third book could not be saved"
@@ -1425,11 +1444,12 @@
     reviews as her failure. The author does not — still writes her
     warmly. It is nonetheless the sore professional point from the
     OUP years.
-  provenance:
-    attribution: { source: "Alex, self-report, Feb 2025" }
-    evidence: { type: self-report }
-    derivation: { from: [R02-career, R11-lens-structural-vs-line], method: "direct" }
-
+  said_by: "Alex, self-report, Feb 2025"
+  evidence_kind: self-report
+  derives_from:
+    - R02-career
+    - R11-lens-structural-vs-line
+  how_it_follows: "direct"
 - id: R36-navarro-treatment
   type: reference
   name: "The \"Navarro treatment\" — signature editorial style"
@@ -1447,11 +1467,12 @@
     the best thing that has happened to the book." Alex is
     uncomfortable being named in this register and has declined
     an invitation to write about her process.
-  provenance:
-    attribution: { source: "Alex, self-report + Publishers Weekly profile of J. Tanaka (Mar 2024)" }
-    evidence: { type: external-record }
-    derivation: { from: [R02-career, R11-lens-structural-vs-line], method: "direct" }
-
+  said_by: "Alex, self-report + Publishers Weekly profile of J. Tanaka (Mar 2024)"
+  evidence_kind: external-record
+  derives_from:
+    - R02-career
+    - R11-lens-structural-vs-line
+  how_it_follows: "direct"
 - id: O13-reputation-for-no
   type: observation
   name: "Reputation for saying no quickly"
@@ -1464,11 +1485,11 @@
     speed of "no" sometimes closes doors that deserved a second
     conversation. Both are true. Alex tracks this carefully and
     has not changed the practice.
-  provenance:
-    attribution: { source: "Alex, self-report + a 2023 OUP peer feedback note" }
-    evidence: { type: external-record }
-    derivation: { from: [R02-career], method: "direct" }
-
+  said_by: "Alex, self-report + a 2023 OUP peer feedback note"
+  evidence_kind: external-record
+  derives_from:
+    - R02-career
+  how_it_follows: "direct"
 # ──────────────────────────────────────────────────────────────────────────────
 #  ADDITIONAL OVERLAPS — contradictions held open
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1485,16 +1506,20 @@
     on. Where the soft accommodations leak in (answering Yonas
     late but generously), the mechanism is editorial care, not
     calendar slack. Contradicts P05. See P05.
-  provenance:
-    attribution: { source: "Pattern across episodes" }
-    evidence:
-      type: pattern-across-cases
-      references: [O07-kitchen-dinners, O08-correspondence-discipline, O13-reputation-for-no, R36-navarro-treatment, PR02-one-sitting-manuscript-read]
-      description: "Four independent mechanisms of time-discipline — batch, letter-closure, fast-no, one-sitting reads"
-    derivation:
-      from: [O07-kitchen-dinners, O13-reputation-for-no, R36-navarro-treatment]
-      method: "induction across independent instances"
-
+  said_by: "Pattern across episodes"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - O07-kitchen-dinners
+    - O08-correspondence-discipline
+    - O13-reputation-for-no
+    - R36-navarro-treatment
+    - PR02-one-sitting-manuscript-read
+  evidence_notes: "Four independent mechanisms of time-discipline — batch, letter-closure, fast-no, one-sitting reads"
+  derives_from:
+    - O07-kitchen-dinners
+    - O13-reputation-for-no
+    - R36-navarro-treatment
+  how_it_follows: "induction across independent instances"
 - id: P05-overbooks-socially
   type: overlap
   name: "Alex overbooks herself socially because she fears being alone in Chicago"
@@ -1508,16 +1533,19 @@
     Both are true simultaneously — the calendar is efficient AND
     overbooked, because the overbooking is in the socially-
     legitimate-work column. Do NOT reconcile.
-  provenance:
-    attribution: { source: "Pattern across episodes" }
-    evidence:
-      type: pattern-across-cases
-      references: [O02-running-group, O07-kitchen-dinners, O05-workplace-conflict, R04-move]
-      description: "Post-move social density > pre-move, in categories with editorial cover"
-    derivation:
-      from: [R04-move, O07-kitchen-dinners, O02-running-group]
-      method: "induction; read against the isolation risk named by N01"
-
+  said_by: "Pattern across episodes"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - O02-running-group
+    - O07-kitchen-dinners
+    - O05-workplace-conflict
+    - R04-move
+  evidence_notes: "Post-move social density > pre-move, in categories with editorial cover"
+  derives_from:
+    - R04-move
+    - O07-kitchen-dinners
+    - O02-running-group
+  how_it_follows: "induction; read against the isolation risk named by N01"
 - id: P06-holds-grudges
   type: overlap
   name: "Alex holds grudges longer than she admits"
@@ -1532,16 +1560,18 @@
     (O11) revisited with a particular edge. When Alex says "I'm
     fine," the specific tell is she tells a small precise story
     about the other person's error three sentences later.
-  provenance:
-    attribution: { source: "Pattern across episodes" }
-    evidence:
-      type: pattern-across-cases
-      references: [O05-workplace-conflict, O06-post-divorce-affair, O11-passed-on-prizewinner]
-      description: "Three detailed instances + the Rachel register + Daniel's register across O05/OQ02"
-    derivation:
-      from: [O05-workplace-conflict, O06-post-divorce-affair, O11-passed-on-prizewinner]
-      method: "induction across independent instances"
-
+  said_by: "Pattern across episodes"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - O05-workplace-conflict
+    - O06-post-divorce-affair
+    - O11-passed-on-prizewinner
+  evidence_notes: "Three detailed instances + the Rachel register + Daniel's register across O05/OQ02"
+  derives_from:
+    - O05-workplace-conflict
+    - O06-post-divorce-affair
+    - O11-passed-on-prizewinner
+  how_it_follows: "induction across independent instances"
 - id: P07-care-real-and-substitute
   type: overlap
   name: "Alex's care for authors is real AND a substitute"
@@ -1556,16 +1586,22 @@
     per R26). Both claims are simultaneously true. The graph
     should not attempt to resolve which is dominant — the claim
     is that the channel is doing both kinds of work at once.
-  provenance:
-    attribution: { source: "Pattern across episodes" }
-    evidence:
-      type: pattern-across-cases
-      references: [O07-kitchen-dinners, O08-correspondence-discipline, O05-workplace-conflict, R36-navarro-treatment, R26-nadia, O10-intimacy-ambivalence]
-      description: "Editorial care expressed through multiple structural mechanisms; parallel thinness of non-editorial channels"
-    derivation:
-      from: [O07-kitchen-dinners, O08-correspondence-discipline, R36-navarro-treatment, R26-nadia]
-      method: "induction; the contradiction is the content"
-
+  said_by: "Pattern across episodes"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - O07-kitchen-dinners
+    - O08-correspondence-discipline
+    - O05-workplace-conflict
+    - R36-navarro-treatment
+    - R26-nadia
+    - O10-intimacy-ambivalence
+  evidence_notes: "Editorial care expressed through multiple structural mechanisms; parallel thinness of non-editorial channels"
+  derives_from:
+    - O07-kitchen-dinners
+    - O08-correspondence-discipline
+    - R36-navarro-treatment
+    - R26-nadia
+  how_it_follows: "induction; the contradiction is the content"
 # ──────────────────────────────────────────────────────────────────────────────
 #  ADDITIONAL CANARIES
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1581,13 +1617,13 @@
     deteriorating. Often earlier than the routine-breakdown
     signal (R12) because it is quieter — a no-effort ritual
     that stops before the effortful ones do.
-  provenance:
-    attribution: { source: "Derived from R32" }
-    evidence:
-      type: derived-inference
-      references: [R32-orioles-crossword]
-    derivation: { from: [R32-orioles-crossword], method: "derived behavioral signal" }
-
+  said_by: "Derived from R32"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - R32-orioles-crossword
+  derives_from:
+    - R32-orioles-crossword
+  how_it_follows: "derived behavioral signal"
 - id: R38-canary-nadia-uncalled
   type: reference
   name: "Canary: Nadia missed call sits for a full week without a callback"
@@ -1597,13 +1633,13 @@
     Voicemail that sits seven days → the drift is becoming
     permanent rather than logistic. Less a week-of-work signal
     than a quarter-of-life signal.
-  provenance:
-    attribution: { source: "Derived from R26" }
-    evidence:
-      type: derived-inference
-      references: [R26-nadia]
-    derivation: { from: [R26-nadia], method: "derived behavioral signal" }
-
+  said_by: "Derived from R26"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - R26-nadia
+  derives_from:
+    - R26-nadia
+  how_it_follows: "derived behavioral signal"
 - id: R39-canary-old-contracts
   type: reference
   name: "Canary: Alex re-reads old OUP contracts instead of new UChicago submissions"
@@ -1615,13 +1651,14 @@
     twice since the move (Nov 2024, Feb 2025). Third instance in
     a single quarter → OQ01 is drifting toward permanent-stay by
     default rather than by decision.
-  provenance:
-    attribution: { source: "Alex, self-report, noticed Feb 2025" }
-    evidence:
-      type: derived-inference
-      references: [R04-move, OQ01-long-term-plan]
-    derivation: { from: [OQ01-long-term-plan], method: "derived behavioral signal" }
-
+  said_by: "Alex, self-report, noticed Feb 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - R04-move
+    - OQ01-long-term-plan
+  derives_from:
+    - OQ01-long-term-plan
+  how_it_follows: "derived behavioral signal"
 # ──────────────────────────────────────────────────────────────────────────────
 #  ADDITIONAL NOVELS — single-derivation, TENTATIVE
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1642,14 +1679,17 @@
     distance from the Brooklyn years in which the loss sat
     unaddressed. The opportunity framing is real; the grief
     shape may be concurrent. Not mutually exclusive.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      references: [R04-move, R05-sister, N03-helen-structural-presence, O06-post-divorce-affair]
-    derivation:
-      from: [R04-move, R05-sister]
-      method: "interpretive; single derivation, relies on timing coincidence"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - R04-move
+    - R05-sister
+    - N03-helen-structural-presence
+    - O06-post-divorce-affair
+  derives_from:
+    - R04-move
+    - R05-sister
+  how_it_follows: "interpretive; single derivation, relies on timing coincidence"
   caveats: |
     Highly speculative. Alex has never framed it this way.
     Could be wrong: (1) the timing is a coincidence; Alex was
@@ -1676,14 +1716,16 @@
     the mornings" — reads in this frame as a parental sentence.
     Tentative because normal adolescent perceptiveness produces
     some of the same behavior.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      references: [O01-first-three-months, O04-daughter-grades-recovered, E01-child-stability-depends-on-alex-stability]
-    derivation:
-      from: [O01-first-three-months, O04-daughter-grades-recovered]
-      method: "interpretive; pattern across small instances"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - O01-first-three-months
+    - O04-daughter-grades-recovered
+    - E01-child-stability-depends-on-alex-stability
+  derives_from:
+    - O01-first-three-months
+    - O04-daughter-grades-recovered
+  how_it_follows: "interpretive; pattern across small instances"
   caveats: |
     Fourteen-year-olds with a single attentive parent often
     pay close attention to that parent; the observed behavior
@@ -1716,20 +1758,28 @@
     to relationships inside it. Operational implication: OQ04 is
     not really "does she want a partner" — it is "can she build
     an intimacy outside the editorial frame."
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      description: "Intersection-produced; not present in any single node"
-      references: [O07-kitchen-dinners, O08-correspondence-discipline, R31-pleasure-reading, R36-navarro-treatment, O06-post-divorce-affair, O09-dating-app-pattern, R26-nadia]
-    derivation:
-      from: [O07-kitchen-dinners, O08-correspondence-discipline, O06-post-divorce-affair, O09-dating-app-pattern]
-      method: "intersection across multiple nodes"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_notes: "Intersection-produced; not present in any single node"
+  evidence_refs:
+    - O07-kitchen-dinners
+    - O08-correspondence-discipline
+    - R31-pleasure-reading
+    - R36-navarro-treatment
+    - O06-post-divorce-affair
+    - O09-dating-app-pattern
+    - R26-nadia
+  derives_from:
+    - O07-kitchen-dinners
+    - O08-correspondence-discipline
+    - O06-post-divorce-affair
+    - O09-dating-app-pattern
+  how_it_follows: "intersection across multiple nodes"
   edges:
     - to: P07-care-real-and-substitute
       relation: emergent_from
     - to: OQ04-partner-or-enough
-      relation: informs
+      relation: qualifies
 
 - id: E07-helen-shapes-commissioning
   type: emergent
@@ -1744,15 +1794,18 @@
     climate modeling Alex fought the committee for (O05) — sits
     at the intersection. The emergent is doubly tentative
     because it rests on two novels. If either falls, it falls.
-  provenance:
-    attribution: { source: "Surfaced May 2025" }
-    evidence:
-      type: derived-inference
-      description: "Intersection of two tentative nodes; doubly speculative"
-      references: [N03-helen-structural-presence, N05-move-was-grief-shaped, R02-career, O05-workplace-conflict]
-    derivation:
-      from: [N03-helen-structural-presence, N05-move-was-grief-shaped]
-      method: "intersection of two novels — promote with care"
+  said_by: "Surfaced May 2025"
+  evidence_kind: derived-inference
+  evidence_notes: "Intersection of two tentative nodes; doubly speculative"
+  evidence_refs:
+    - N03-helen-structural-presence
+    - N05-move-was-grief-shaped
+    - R02-career
+    - O05-workplace-conflict
+  derives_from:
+    - N03-helen-structural-presence
+    - N05-move-was-grief-shaped
+  how_it_follows: "intersection of two novels — promote with care"
   edges:
     - to: N03-helen-structural-presence
       relation: emergent_from
@@ -1798,14 +1851,22 @@
       something else is).
     Variance is high. The point is not prediction; the point
     is a benchmark for surprise.
-  provenance:
-    attribution: { source: "Forecast, May 2025" }
-    evidence:
-      type: derived-inference
-      references: [NOW, R19-perimenopause, R28-father-slowing, OQ01-long-term-plan, OQ04-partner-or-enough, OQ05-press-director-succession, E06-intimacy-mediated-by-editorial-frame]
-    derivation:
-      from: [NOW, OQ01-long-term-plan, OQ04-partner-or-enough, R28-father-slowing]
-      method: "long-horizon projection; explicitly expects to be wrong on at least one axis"
+  said_by: "Forecast, May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - NOW
+    - R19-perimenopause
+    - R28-father-slowing
+    - OQ01-long-term-plan
+    - OQ04-partner-or-enough
+    - OQ05-press-director-succession
+    - E06-intimacy-mediated-by-editorial-frame
+  derives_from:
+    - NOW
+    - OQ01-long-term-plan
+    - OQ04-partner-or-enough
+    - R28-father-slowing
+  how_it_follows: "long-horizon projection; explicitly expects to be wrong on at least one axis"
   caveats: |
     Per the 12-month forecast's framing (E05): a 5-year forecast
     whose predictions all land is itself suspicious — it means
@@ -1830,15 +1891,15 @@
     pencils. Holds through commissioning season; breaks
     occasionally in the Sep–Nov ramp (O01 showed this) and
     Alex uses the break as a canary.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-02" }
-    evidence:
-      type: pattern-across-cases
-      references: [PR02-one-sitting-manuscript-read, O01-first-three-months]
-    derivation:
-      from: [PR02-one-sitting-manuscript-read]
-      method: "normative rule parallel to PR02 at weekly granularity"
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-02"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - PR02-one-sitting-manuscript-read
+    - O01-first-three-months
+  derives_from:
+    - PR02-one-sitting-manuscript-read
+  how_it_follows: "normative rule parallel to PR02 at weekly granularity"
 - id: PR05-phoneless-walk
   type: practice
   name: "One long walk per month without a phone"
@@ -1851,15 +1912,14 @@
     measurement is whether the walk produces sentences she would
     not have produced at a desk; roughly half the time it does
     not, and that is considered the practice working.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-03" }
-    evidence:
-      type: pattern-across-cases
-      references: [P03-interpretive-depth-emotional-distance]
-    derivation:
-      from: [P03-interpretive-depth-emotional-distance]
-      method: "normative rule; explicit hedge against overlap P03"
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-03"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - P03-interpretive-depth-emotional-distance
+  derives_from:
+    - P03-interpretive-depth-emotional-distance
+  how_it_follows: "normative rule; explicit hedge against overlap P03"
 - id: PR06-annual-retreat
   type: practice
   name: "Annual 3-day retreat alone (first May 2025, Door County)"
@@ -1873,15 +1933,17 @@
     The rule is the retreat is for the notebook; no resolutions,
     no report-outs, nothing deliverable. Parallel to KT01 (know-
     thyself) at the annual granularity.
-  provenance:
-    attribution: { source: "Alex, self-articulated", date: "2025-04" }
-    evidence:
-      type: pattern-across-cases
-      references: [KT01-know-thyself, PR05-phoneless-walk, P03-interpretive-depth-emotional-distance]
-    derivation:
-      from: [KT01-know-thyself, PR05-phoneless-walk]
-      method: "annual scaffolding derived from the meta-practice"
-
+  said_by: "Alex, self-articulated"
+  said_when: "2025-04"
+  evidence_kind: pattern-across-cases
+  evidence_refs:
+    - KT01-know-thyself
+    - PR05-phoneless-walk
+    - P03-interpretive-depth-emotional-distance
+  derives_from:
+    - KT01-know-thyself
+    - PR05-phoneless-walk
+  how_it_follows: "annual scaffolding derived from the meta-practice"
 # ──────────────────────────────────────────────────────────────────────────────
 #  ADDITIONAL OPEN QUESTIONS
 # ──────────────────────────────────────────────────────────────────────────────
@@ -1901,11 +1963,13 @@
     the editorial frame. Do not pressure to resolution — the
     right posture on this one may be to let it remain open for
     another five years and see what precipitates.
-  provenance:
-    attribution: { source: "Open as of May 2025" }
-    evidence: { type: derived-inference }
-    derivation: { from: [O09-dating-app-pattern, O10-intimacy-ambivalence, E06-intimacy-mediated-by-editorial-frame], method: "unresolved; explicitly left open" }
-
+  said_by: "Open as of May 2025"
+  evidence_kind: derived-inference
+  derives_from:
+    - O09-dating-app-pattern
+    - O10-intimacy-ambivalence
+    - E06-intimacy-mediated-by-editorial-frame
+  how_it_follows: "unresolved; explicitly left open"
 - id: OQ05-press-director-succession
   type: open
   name: "What does Alex's UChicago list look like if the current director retires in 2–3 years?"
@@ -1921,9 +1985,14 @@
     (Chicago 2–3 vs. permanent) resolves toward permanent by
     force. Two different institutional futures sit under this
     question. Alex has not surfaced it; she will.
-  provenance:
-    attribution: { source: "Open as of May 2025" }
-    evidence:
-      type: derived-inference
-      references: [R02-career, P02-holds-positions-in-work, OQ01-long-term-plan, R29-uchicago-senior-colleague]
-    derivation: { from: [OQ01-long-term-plan, P02-holds-positions-in-work], method: "unresolved; institutional uncertainty" }
+  said_by: "Open as of May 2025"
+  evidence_kind: derived-inference
+  evidence_refs:
+    - R02-career
+    - P02-holds-positions-in-work
+    - OQ01-long-term-plan
+    - R29-uchicago-senior-colleague
+  derives_from:
+    - OQ01-long-term-plan
+    - P02-holds-positions-in-work
+  how_it_follows: "unresolved; institutional uncertainty"

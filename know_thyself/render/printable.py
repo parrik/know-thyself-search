@@ -78,8 +78,7 @@ def node_label(n, max_width=22, max_chars=48):
 def compute_indegree(nodes):
     indeg = defaultdict(int)
     for n in nodes:
-        deriv = n.get('provenance', {}).get('derivation', {}) or {}
-        for src in (deriv.get('from') or []):
+        for src in (n.get('derives_from') or []):
             indeg[src] += 1
         for edge in (n.get('edges') or []):
             if edge.get('to'):
@@ -112,8 +111,7 @@ def render_spine_pdf(nodes, out_no_ext, title):
                  **TYPE_STYLE.get(n['type'], {}))
 
     for n in spine:
-        deriv = n.get('provenance', {}).get('derivation', {}) or {}
-        for src in (deriv.get('from') or []):
+        for src in (n.get('derives_from') or []):
             if src in spine_ids and src != n['id']:
                 dot.edge(src, n['id'], color='#AAAAAA',
                          penwidth='0.6', arrowsize='0.5')
@@ -143,8 +141,7 @@ def render_full_pdf(nodes, out_no_ext, title):
         dot.node(n['id'], label=node_label(n, 18, 42),
                  **TYPE_STYLE.get(n['type'], {}))
     for n in nodes:
-        deriv = n.get('provenance', {}).get('derivation', {}) or {}
-        for src in (deriv.get('from') or []):
+        for src in (n.get('derives_from') or []):
             if src in id_set and src != n['id']:
                 dot.edge(src, n['id'], color='#BBBBBB',
                          penwidth='0.4', arrowsize='0.4')
@@ -266,8 +263,10 @@ def render_cover_pdf(nodes, out_path, title):
     # How to read
     story.append(Paragraph("How to read the diagram", h2_s))
     story.append(Paragraph(
-        "<b>Invariant:</b> every node carries (attribution, evidence, derivation). "
-        "A claim without provenance is indistinguishable from noise. "
+        "<b>Invariant:</b> every node carries who said it (said_by, said_when), "
+        "what it rests on (evidence_kind, evidence_refs), and how it follows "
+        "(derives_from, how_it_follows). A claim without that paper trail is "
+        "indistinguishable from noise. "
         "<b>Attribution ≠ confidence</b> — repetition of a claim is NOT confirmation; "
         "multiple independent derivations are.", body_s))
     story.append(Paragraph(
