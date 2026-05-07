@@ -19,15 +19,15 @@ Both write the same JSON shape so search.py reads either interchangeably —
 which is the essay's point: the substrate changes, the shape doesn't.
 
 Usage:
-  python embed.py examples/example-graph-extended.yaml
-  python embed.py examples/example-graph-extended.yaml --backend openai
+  python embed.py example-graph-extended.yaml
+  python embed.py example-graph-extended.yaml --backend openai
 """
 import argparse
 import json
 import math
 import re
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 
 try:
@@ -295,8 +295,10 @@ def tfidf_embed(nodes):
 def openai_embed(nodes, model="text-embedding-3-small"):
     try:
         from openai import OpenAI
-    except ImportError:
-        sys.exit("ERROR: pip install openai")
+    except ImportError as e:
+        raise ImportError(
+            "openai backend requires the openai package; pip install openai"
+        ) from e
     client = OpenAI()  # reads OPENAI_API_KEY from env
     texts = [(n.get("statement") or "") + "\n\n" + (n.get("name") or "") for n in nodes]
     print(f"  calling OpenAI {model} for {len(texts)} statements...", file=sys.stderr)
@@ -321,8 +323,11 @@ def openai_embed(nodes, model="text-embedding-3-small"):
 def local_embed(nodes, model="sentence-transformers/all-MiniLM-L6-v2"):
     try:
         from sentence_transformers import SentenceTransformer
-    except ImportError:
-        sys.exit("ERROR: pip install sentence-transformers")
+    except ImportError as e:
+        raise ImportError(
+            "local backend requires sentence-transformers; "
+            "pip install sentence-transformers"
+        ) from e
     print(f"  loading {model} (first run downloads ~80MB to ~/.cache/huggingface/)...", file=sys.stderr)
     encoder = SentenceTransformer(model)
     texts = [(n.get("statement") or "") + "\n\n" + (n.get("name") or "") for n in nodes]
@@ -337,6 +342,67 @@ def local_embed(nodes, model="sentence-transformers/all-MiniLM-L6-v2"):
 
 
 # ──────────────────────────────────────────────────────────────────────
+
+def build_index(
+    graph_path,
+    backend="tfidf",
+    openai_model="text-embedding-3-small",
+    local_model="sentence-transformers/all-MiniLM-L6-v2",
+    verbose=False,
+):
+    """Build the index dict for a graph YAML. Single source of truth for
+    the index shape — the CLI calls this, the MCP server calls this for
+    in-process auto-rebuild.
+
+    Returns the dict ready to be json.dump'd.
+    """
+    def log(msg):
+        if verbose:
+            print(msg, file=sys.stderr)
+
+    log(f"loading graph: {graph_path}")
+    nodes = load_nodes(graph_path)
+    log(f"  {len(nodes)} nodes loaded")
+
+    if backend == "tfidf":
+        log("backend: tf-idf (hand-rolled, no deps)")
+        vocab, vectors = tfidf_embed(nodes)
+        log(f"  vocab: {len(vocab)} terms · vectors: {vectors.shape}")
+        model_name = "tfidf"
+    elif backend == "openai":
+        log(f"backend: openai ({openai_model})")
+        vocab, vectors = openai_embed(nodes, model=openai_model)
+        log(f"  vectors: {vectors.shape}")
+        model_name = openai_model
+    elif backend == "local":
+        log(f"backend: local sentence-transformers ({local_model})")
+        vocab, vectors = local_embed(nodes, model=local_model)
+        log(f"  vectors: {vectors.shape}")
+        model_name = local_model
+    else:
+        raise ValueError(f"unknown backend: {backend}")
+
+    return {
+        "backend": backend,
+        "model": model_name,
+        "dim": int(vectors.shape[1]),
+        "count": len(nodes),
+        "vocab": vocab,  # only present for tfidf
+        "nodes": [
+            {
+                "id": n["id"],
+                "type": n.get("type"),
+                "name": n.get("name", ""),
+                "tentative": bool(n.get("tentative")),
+                "statement": n.get("statement", ""),
+                "grounded_by_ids": n.get("grounded_by_ids", []),
+                "related_to_ids": n.get("related_to_ids", []),
+                "vector": vectors[i].tolist(),
+            }
+            for i, n in enumerate(nodes)
+        ],
+    }
+
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -362,50 +428,13 @@ def main():
     )
     args = ap.parse_args()
 
-    print(f"loading graph: {args.graph}", file=sys.stderr)
-    nodes = load_nodes(args.graph)
-    print(f"  {len(nodes)} nodes loaded", file=sys.stderr)
-
-    if args.backend == "tfidf":
-        print(f"backend: tf-idf (hand-rolled, no deps)", file=sys.stderr)
-        vocab, vectors = tfidf_embed(nodes)
-        print(f"  vocab: {len(vocab)} terms · vectors: {vectors.shape}", file=sys.stderr)
-    elif args.backend == "openai":
-        print(f"backend: openai ({args.openai_model})", file=sys.stderr)
-        vocab, vectors = openai_embed(nodes, model=args.openai_model)
-        print(f"  vectors: {vectors.shape}", file=sys.stderr)
-    else:  # local
-        print(f"backend: local sentence-transformers ({args.local_model})", file=sys.stderr)
-        vocab, vectors = local_embed(nodes, model=args.local_model)
-        print(f"  vectors: {vectors.shape}", file=sys.stderr)
-
-    if args.backend == "tfidf":
-        model_name = "tfidf"
-    elif args.backend == "openai":
-        model_name = args.openai_model
-    else:
-        model_name = args.local_model
-
-    out = {
-        "backend": args.backend,
-        "model": model_name,
-        "dim": int(vectors.shape[1]),
-        "count": len(nodes),
-        "vocab": vocab,  # only present for tfidf
-        "nodes": [
-            {
-                "id": n["id"],
-                "type": n.get("type"),
-                "name": n.get("name", ""),
-                "tentative": bool(n.get("tentative")),
-                "statement": n.get("statement", ""),
-                "grounded_by_ids": n.get("grounded_by_ids", []),
-                "related_to_ids": n.get("related_to_ids", []),
-                "vector": vectors[i].tolist(),
-            }
-            for i, n in enumerate(nodes)
-        ],
-    }
+    out = build_index(
+        args.graph,
+        backend=args.backend,
+        openai_model=args.openai_model,
+        local_model=args.local_model,
+        verbose=True,
+    )
     Path(args.output).write_text(json.dumps(out))
     print(
         f"wrote {args.output}  ({Path(args.output).stat().st_size:,} bytes)",
