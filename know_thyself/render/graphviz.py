@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """
-render.py — Render any memory graph YAML to a graphviz diagram.
+graphviz.py — Render any memory graph YAML to a graphviz diagram, plus
+machine-checkable validation of SCHEMA.md rules 1–10.
 
 Usage:
-    python3 render.py path/to/your-graph.yaml
+    python -m know_thyself.render.graphviz path/to/your-graph.yaml
 
 Produces:
-    - your-graph-full.png      (all nodes)
-    - your-graph-spine.png     (load-bearing subset)
-    - your-graph-validation.txt (schema check)
+    - your-graph-full.png       (all nodes)
+    - your-graph-spine.png      (load-bearing subset)
+    - your-graph-validation.txt (schema check — all 10 SCHEMA.md rules)
 
 Requires: PyYAML, graphviz (python package + system dot binary).
     pip install pyyaml graphviz
@@ -252,7 +253,7 @@ def render_spine(nodes, out_path_no_ext, title='Memory graph — load-bearing sp
 # ─────────────────────────────────────────────────────────────────────────
 def main():
     if len(sys.argv) < 2:
-        sys.exit("Usage: python3 render.py path/to/graph.yaml")
+        sys.exit("Usage: python -m know_thyself.render.graphviz path/to/graph.yaml")
 
     yaml_path = Path(sys.argv[1]).resolve()
     if not yaml_path.exists():

@@ -19,8 +19,8 @@ Both write the same JSON shape so search.py reads either interchangeably —
 which is the essay's point: the substrate changes, the shape doesn't.
 
 Usage:
-  python embed.py example-graph-extended.yaml
-  python embed.py example-graph-extended.yaml --backend openai
+  python -m know_thyself.retrieval.embed example-graph-extended.yaml
+  python -m know_thyself.retrieval.embed example-graph-extended.yaml --backend openai
 """
 import argparse
 import json

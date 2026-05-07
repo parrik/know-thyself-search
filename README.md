@@ -18,7 +18,7 @@ python -m know_thyself.render.dashboard examples/example-graph-extended.yaml
 # renders
 python -m know_thyself.render.dashboard graph.yaml     # ✓ interactive HTML, NOW-centered, fractal/spine/eyes/canaries panels
 python -m know_thyself.render.mandala graph.yaml       # ✓ after `pip install matplotlib` — concentric rings + risk-corridor projections
-python -m know_thyself.render.graphviz graph.yaml      # ✓ validator (rules 1-6 → validation.txt); 🚧 diagram render needs the system `dot` binary (`brew install graphviz` / `apt-get install graphviz`)
+python -m know_thyself.render.graphviz graph.yaml      # ✓ validator (all 10 SCHEMA.md rules → validation.txt; needs `pip install graphviz`); 🚧 diagram render additionally needs the system `dot` binary (`brew install graphviz` / `apt-get install graphviz`)
 python -m know_thyself.render.printable graph.yaml     # 🚧 cover renders with `reportlab pypdf`; full + spine pages need the system `dot` binary
 
 # retrieval — TF-IDF backend tested; OpenAI / sentence-transformers wired but un-exercised
@@ -64,7 +64,7 @@ examples/
 
 ## ack
 
-[know-thyself](https://github.com/parrik/know-thyself) — schema and elicitation prompt. [Alex Navarro case study](https://parrik.com/alex-case-study.html#spine) — what an 87-node personal graph looks like.
+[know-thyself](https://github.com/parrik/know-thyself) — schema and elicitation prompt. [Alex Navarro case study](https://parrik.com/alex-case-study.html#tab-spine) — what an 87-node personal graph looks like.
 
 ## license
 

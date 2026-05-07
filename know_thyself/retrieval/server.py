@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-mcp_server.py — MCP server wrapping know-thyself retrieval.
+server.py — MCP server wrapping know-thyself retrieval.
 
 Exposes the typed-graph retrieval surface as MCP tools so any MCP-aware
 client (Claude Code, Claude Desktop, Cursor, etc.) can query a typed
@@ -45,7 +45,7 @@ Configuration via env vars
 
 Run
 ---
-  python mcp_server.py                 # stdio transport (the usual MCP wire)
+  python -m know_thyself.retrieval.server     # stdio transport (the usual MCP wire)
 """
 import json
 import os
@@ -137,7 +137,7 @@ def _ensure_loaded() -> None:
     if not INDEX_PATH.exists():
         raise FileNotFoundError(
             f"index not found at {INDEX_PATH}. "
-            f"Run: python embed.py <graph.yaml>  "
+            f"Run: python -m know_thyself.retrieval.embed <graph.yaml>  "
             f"(or set KNOW_THYSELF_GRAPH to enable auto-rebuild)"
         )
 

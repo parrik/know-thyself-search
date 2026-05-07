@@ -20,8 +20,8 @@ Run it on a query where the answer should be a specific dated event
     overlap.
 
 Usage:
-  python compare.py "when have I felt isolated"
-  python compare.py "the daughter is doing better" --type-filter observation
+  python -m know_thyself.retrieval.compare "your query here"
+  python -m know_thyself.retrieval.compare "your query here" --type-filter observation
 """
 import argparse
 import json

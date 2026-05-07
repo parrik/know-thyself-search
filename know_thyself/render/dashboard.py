@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-render_dashboard.py — generate the Alex interactive dashboard HTML.
+dashboard.py — generate an interactive dashboard HTML for a memory graph.
 
 Apple-inspired tabbed layout (refresh, May 2 2026):
 
@@ -26,8 +26,8 @@ Writes:
 
 Requires: pyyaml only (vis-network is loaded via CDN at runtime).
 
-Run: python3 render_dashboard.py
-Open: example-graph-extended.html in any browser.
+Run: python -m know_thyself.render.dashboard path/to/graph.yaml
+Open: the produced .html file in any browser.
 """
 import json
 import math

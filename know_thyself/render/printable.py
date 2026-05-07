@@ -3,7 +3,7 @@
 printable.py — Generate a multi-page printable PDF from a memory graph YAML.
 
 Usage:
-    python3 printable.py path/to/your-graph.yaml
+    python -m know_thyself.render.printable path/to/your-graph.yaml
 
 Produces:
     your-graph-printable.pdf  (4 pages: cover + principles + spine + full)
@@ -293,7 +293,7 @@ def merge_pdfs(paths, out_path):
 
 def main():
     if len(sys.argv) < 2:
-        sys.exit("Usage: python3 printable.py path/to/graph.yaml")
+        sys.exit("Usage: python -m know_thyself.render.printable path/to/graph.yaml")
 
     yaml_path = Path(sys.argv[1]).resolve()
     if not yaml_path.exists():

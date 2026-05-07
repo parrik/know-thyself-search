@@ -18,9 +18,9 @@ ranking turns "Attribution ≠ confidence" into a structural property
 of retrieval, not just a rule of interpretation.
 
 Usage:
-  python search.py "when have I felt isolated"
-  python search.py "when have I felt isolated" -k 5 --type observation
-  python search.py "when have I felt isolated" --provenance
+  python -m know_thyself.retrieval.search "your query here"
+  python -m know_thyself.retrieval.search "your query here" -k 5 --type observation
+  python -m know_thyself.retrieval.search "your query here" --provenance
 """
 import argparse
 import json

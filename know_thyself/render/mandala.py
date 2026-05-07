@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-render_mandala.py — alternate renders for a memory graph YAML.
+mandala.py — alternate renders for a memory graph YAML.
 
-Produces two kinds of image beyond the graphviz views in render.py:
+Produces two kinds of image beyond the graphviz views in
+know_thyself.render.graphviz:
 
   1. Mandala view — concentric rings by node type (reference, observation,
      overlap, emergent, novel, equivalency, practice, open). The central ring
@@ -18,8 +19,8 @@ For each view we also emit a 1200x630 "og" crop with a small baked-in caption
 that looks reasonable as a LinkedIn / OG preview.
 
 Usage:
-    python3 render_mandala.py path/to/graph.yaml
-    python3 render_mandala.py path/to/graph.yaml --pivot O01-first-three-months
+    python -m know_thyself.render.mandala path/to/graph.yaml
+    python -m know_thyself.render.mandala path/to/graph.yaml --pivot SOME-NODE-ID
 
 Requires: PyYAML, matplotlib. Both are pure-Python installs.
     pip install pyyaml matplotlib

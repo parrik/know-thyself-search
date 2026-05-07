@@ -1,11 +1,28 @@
 pyyaml>=6.0
 numpy>=1.24
 
-# Optional, only if you use --backend openai
+# Optional — install only what you need.
+
+# render.dashboard works on the floor above (pyyaml + numpy + stdlib).
+
+# render.graphviz validator works on the floor; the diagram render
+# additionally requires the system `dot` binary
+# (brew install graphviz / apt-get install graphviz) and:
+# graphviz>=0.20
+
+# render.mandala:
+# matplotlib>=3.7
+
+# render.printable:
+# reportlab>=4.0
+# pypdf>=4.0
+# (full + spine pages also need the system `dot` binary)
+
+# retrieval.embed --backend openai:
 # openai>=1.0
 
-# Optional, only if you use --backend local (offline dense embeddings)
+# retrieval.embed --backend local (offline dense embeddings):
 # sentence-transformers>=2.2
 
-# Optional, only if you run mcp_server.py (MCP server)
+# retrieval.server (MCP):
 # mcp[cli]>=1.0
