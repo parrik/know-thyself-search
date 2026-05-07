@@ -18,13 +18,14 @@ ranking turns "Attribution ≠ confidence" into a structural property
 of retrieval, not just a rule of interpretation.
 
 Usage:
-  python search.py "when have I felt isolated"
-  python search.py "when have I felt isolated" -k 5 --type observation
-  python search.py "when have I felt isolated" --provenance
+  python -m know_thyself.retrieval.search "your query here"
+  python -m know_thyself.retrieval.search "your query here" -k 5 --type observation
+  python -m know_thyself.retrieval.search "your query here" --provenance
 """
 import argparse
 import json
 import sys
+from pathlib import Path
 
 try:
     import numpy as np
@@ -63,7 +64,8 @@ def tfidf_vectorize_query(query, vocab):
     """Apply the same TF-IDF shape used at index time, but query-flavored
     (no IDF — we don't have collection statistics for the query, just
     weight terms equally with log-scaled TF)."""
-    import re, math
+    import math
+    import re
     from collections import Counter
     token_re = re.compile(r"[a-z0-9]+")
     tokens = [t for t in token_re.findall(query.lower()) if len(t) > 1]
@@ -129,7 +131,7 @@ def main():
     )
     args = ap.parse_args()
 
-    index = json.loads(open(args.embeddings).read())
+    index = json.loads(Path(args.embeddings).read_text())
     nodes = index["nodes"]
     backend = index["backend"]
 
@@ -153,7 +155,7 @@ def main():
         sys.exit(f"unknown backend: {backend}")
 
     if np.allclose(query_vec, 0):
-        sys.exit(f"query produced zero vector — no in-vocab terms (try --backend openai)")
+        sys.exit("query produced zero vector — no in-vocab terms (try --backend openai or --backend local)")
 
     scores = cosine_query(query_vec, matrix)
 

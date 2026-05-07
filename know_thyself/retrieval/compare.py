@@ -20,12 +20,13 @@ Run it on a query where the answer should be a specific dated event
     overlap.
 
 Usage:
-  python compare.py "when have I felt isolated"
-  python compare.py "the daughter is doing better" --type-filter observation
+  python -m know_thyself.retrieval.compare "your query here"
+  python -m know_thyself.retrieval.compare "your query here" --type-filter observation
 """
 import argparse
 import json
 import sys
+from pathlib import Path
 
 try:
     import numpy as np
@@ -33,12 +34,13 @@ except ImportError:
     sys.exit("ERROR: pip install numpy")
 
 # Reuse the same machinery as search.py
-from search import (
+from know_thyself.retrieval.search import (
     TYPE_TIER,
     TENTATIVE_PENALTY,
     cosine_query,
     tfidf_vectorize_query,
     openai_vectorize_query,
+    local_vectorize_query,
 )
 
 
@@ -95,7 +97,7 @@ def main():
     )
     args = ap.parse_args()
 
-    index = json.loads(open(args.embeddings).read())
+    index = json.loads(Path(args.embeddings).read_text())
     nodes = index["nodes"]
     backend = index["backend"]
     matrix = np.array([n["vector"] for n in nodes], dtype=np.float32)
@@ -104,6 +106,8 @@ def main():
         query_vec = tfidf_vectorize_query(args.query, index["vocab"])
     elif backend == "openai":
         query_vec = openai_vectorize_query(args.query, index["model"])
+    elif backend == "local":
+        query_vec = local_vectorize_query(args.query, index["model"])
     else:
         sys.exit(f"unknown backend: {backend}")
 
